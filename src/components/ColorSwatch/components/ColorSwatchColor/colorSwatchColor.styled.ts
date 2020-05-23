@@ -9,7 +9,7 @@ interface Props {
 export const ColorSwatchColorStyle = styled.div.attrs<Props>(props => ({
     style: {
         backgroundColor: props.color,
-        borderColor: props.selected ? 'rgba(0,0,0,.3)' : 'transparent',
+        borderColor: props.selected ? 'rgba(255,255,255,.7)' : 'transparent',
     },
 }))<Props>`
     border-width: 3px;

@@ -1,1 +1,1 @@
-export { InputUI as Input } from './input.ui';
+export { InputContainer as Input } from './input.container';

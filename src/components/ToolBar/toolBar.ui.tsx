@@ -17,7 +17,25 @@ export const ToolBarUI: FC<Props> = ({
 }) => (
     <ToolBarStyle>
         <TileCount />
-        <Input<number> value={rows} onChange={setRows} />
+        <Input
+            label="Rows"
+            type="number"
+            value={rows}
+            onChange={setRows}
+        />
+        <Input
+            label="Cols"
+            type="number"
+            value={columns}
+            onChange={setColumns}
+        />
+        <Input
+            label="Scale"
+            type="number"
+            value={scale}
+            onChange={setScale}
+            step={0.1}
+        />
         <ColorSwatch />
     </ToolBarStyle>
 );
