@@ -11,7 +11,8 @@ export const TileCountListUI: FC<Props> = ({
     tileColorCounts
 }) => (
     <TileCountListStyle>
-        {tileColorCounts.map(TileCount)}
+        {tileColorCounts.map(colorCount =>
+            <TileCount key={colorCount.color} {...colorCount} />)}
     </TileCountListStyle>
 );
 

@@ -10,6 +10,7 @@ export const PaletteListUI: FC<Props> = ({
     paletteIds
 }) => (
     <PaletteListStyle>
-        {paletteIds.map(paletteId => <Palette paletteId={paletteId} />)}
+        {paletteIds.map(paletteId =>
+            <Palette key={paletteId} paletteId={paletteId} />)}
     </PaletteListStyle>
 );

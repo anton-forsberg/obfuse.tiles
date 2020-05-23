@@ -12,6 +12,7 @@ export const ColorSwatchUI: FC<Props> = ({
     <ColorSwatchStyle
         count={colorIds.length}
     >
-        {colorIds.map(colorId => <ColorSwatchColor colorId={colorId} />)}
+        {colorIds.map(colorId =>
+            <ColorSwatchColor key={colorId} colorId={colorId} />)}
     </ColorSwatchStyle>
 )

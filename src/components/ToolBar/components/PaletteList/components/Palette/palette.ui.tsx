@@ -17,6 +17,7 @@ export const PaletteUI: FC<Props> = ({
         selected={selected}
         onClick={onClick}
     >
-        {colors.map(color => <PaletteColor color={color} />)}
+        {colors.map(color =>
+            <PaletteColor key={color} color={color} />)}
     </PaletteStyle>
 );
