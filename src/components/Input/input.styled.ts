@@ -6,7 +6,7 @@ export const InputStyle = styled.input`
     width: 60px;
     background-color: #333333;
     color: #FFF;
-    border-color: black;
+    border: none;
 `;
 
 export const InputLabelStyle = styled.span`
@@ -16,4 +16,5 @@ export const InputLabelStyle = styled.span`
     transform: rotate(180deg);
     text-transform: uppercase;
     margin-left: 10px;
+    margin-right: 4px;
 `;

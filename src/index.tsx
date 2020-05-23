@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import { GlobalStyle } from './style';
+import {enableMapSet} from "immer"
+
+enableMapSet()
 
 ReactDOM.render(
   <React.StrictMode>

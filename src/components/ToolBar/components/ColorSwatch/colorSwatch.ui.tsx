@@ -1,18 +1,17 @@
 import React, { FC } from "react";
 import { ColorSwatchStyle } from "./colorSwatch.styled";
 import { ColorSwatchColor } from "./components/ColorSwatchColor";
-import { Color } from "../../store/colors/types";
 
 interface Props {
-    colors: Color[];
+    colorIds: string[];
 }
 
 export const ColorSwatchUI: FC<Props> = ({
-    colors,
+    colorIds,
 }) => (
     <ColorSwatchStyle
-        count={colors.length}
+        count={colorIds.length}
     >
-        {colors.map(ColorSwatchColor)}
+        {colorIds.map(colorId => <ColorSwatchColor colorId={colorId} />)}
     </ColorSwatchStyle>
 )

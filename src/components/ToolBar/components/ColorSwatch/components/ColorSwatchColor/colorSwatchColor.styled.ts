@@ -1,20 +1,21 @@
 import styled from "styled-components";
-import { PALETTE_COLOR_SIZE } from "../../../../store/colors/types";
+import { PALETTE_COLOR_SIZE } from "../../../../../../store/palettes/types";
 
 interface Props {
-    color: string;
+    color?: string;
     selected: boolean;
 }
 
 export const ColorSwatchColorStyle = styled.div.attrs<Props>(props => ({
     style: {
         backgroundColor: props.color,
-        borderColor: props.selected ? 'rgba(255,255,255,.7)' : 'transparent',
+        borderColor: props.selected ? '#fff' : 'transparent',
     },
 }))<Props>`
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     box-sizing: border-box;
     width: ${PALETTE_COLOR_SIZE}px;
     height: ${PALETTE_COLOR_SIZE}px;
+    cursor: pointer;
 `

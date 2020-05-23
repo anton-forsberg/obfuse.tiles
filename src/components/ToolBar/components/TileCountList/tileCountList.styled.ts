@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 
-export const TileCountStyle = styled.div`
+export const TileCountListStyle = styled.div`
     display: flex;
 `;

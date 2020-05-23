@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { ToolBarStyle } from "./toolBar.styled";
-import { TileCount } from "../TileCount";
-import { ColorSwatch } from "../ColorSwatch";
+import { TileCountList } from "./components/TileCountList";
+import { ColorSwatch } from "./components/ColorSwatch";
+import { PaletteList } from "./components/PaletteList";
 import { GridValues } from "../../hooks/grid";
 import { Input } from "../Input";
 
@@ -16,7 +17,7 @@ export const ToolBarUI: FC<Props> = ({
     setScale,
 }) => (
     <ToolBarStyle>
-        <TileCount />
+        <TileCountList />
         <Input
             label="Rows"
             type="number"
@@ -34,8 +35,9 @@ export const ToolBarUI: FC<Props> = ({
             type="number"
             value={scale}
             onChange={setScale}
-            step={0.1}
+            step={0.05}
         />
+        <PaletteList />
         <ColorSwatch />
     </ToolBarStyle>
 );

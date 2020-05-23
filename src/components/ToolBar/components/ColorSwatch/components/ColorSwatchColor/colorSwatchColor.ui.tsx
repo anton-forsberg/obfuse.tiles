@@ -4,16 +4,16 @@ import { ColorSwatchColorStyle } from "./colorSwatchColor.styled";
 interface Props {
     onClick: MouseEventHandler;
     selected: boolean;
-    value: string;
+    color?: string;
 }
 
 export const ColorSwatchColorUI: FC<Props> = ({
     onClick,
-    value,
+    color,
     selected,
 }) => (
     <ColorSwatchColorStyle
-        color={value}
+        color={color}
         selected={selected}
         onClick={onClick}
     />

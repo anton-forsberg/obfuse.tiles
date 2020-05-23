@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { selectColors } from "../../store/colors/selectors";
 import { ColorSwatchUI } from './colorSwatch.ui';
+import { selectSelectedPaletteColorIds } from "../../../../store/palettes/selectors";
 
 export const ColorSwatchContainer: FC = () => {
-    const colors = useSelector(selectColors);
+    const colorIds = useSelector(selectSelectedPaletteColorIds);
 
     return (
         <ColorSwatchUI
-            colors={colors}
+            colorIds={colorIds}
         />
     );
 }

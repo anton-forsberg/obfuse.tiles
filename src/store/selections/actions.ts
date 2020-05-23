@@ -5,6 +5,11 @@ export const setSelectedColorId = (value: string): SelectionAction => ({
     value
 });
 
+export const setSelectedPaletteId = (value: string): SelectionAction => ({
+    type: SelectionActionTypes.SET_SELECTED_PALETTE_ID,
+    value
+});
+
 export const setSelectedGridColumns = (value: number): SelectionAction => ({
     type: SelectionActionTypes.SET_SELECTED_GRID_COLUMNS,
     value

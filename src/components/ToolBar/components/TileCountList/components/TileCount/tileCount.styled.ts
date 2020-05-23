@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const TileCountTileStyle = styled.div`
+export const TileCountStyle = styled.div`
     color: #FFF;
     position: relative;
 

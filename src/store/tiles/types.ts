@@ -1,5 +1,10 @@
 export interface TileState {
-    [tileId: string]: string | undefined;
+    [tileId: string]: string;
+};
+
+export interface TileColorCount {
+    color: string;
+    count: number;
 }
 
 export enum TileActionTypes {
