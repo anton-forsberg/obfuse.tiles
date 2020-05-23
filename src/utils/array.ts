@@ -1,0 +1,1 @@
+export const getArrayOfLength = (length: number) => [...Array(length)].map((e, i) => i);

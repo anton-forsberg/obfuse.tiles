@@ -1,0 +1,1 @@
+export { ToolBarContainer as ToolBar } from './toolBar.container';
