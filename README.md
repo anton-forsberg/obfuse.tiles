@@ -1,3 +1,11 @@
+## TODO:
+* Saving/loading
+* Responsive design
+* Handle touch screens
+* Printing
+* Something asynchronous
+* Performance
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

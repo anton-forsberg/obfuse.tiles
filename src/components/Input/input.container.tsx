@@ -1,9 +1,6 @@
 import React, { FC } from "react";
 import { InputUI } from "./input.ui"
 
-type StringCallback = (value: string) => void;
-type NumberCallback = (value: number) => void;
-
 interface BaseProps {
     step?: number;
     label?: string;
@@ -12,35 +9,31 @@ interface BaseProps {
 interface TextProps extends BaseProps {
     type: 'text';
     value: string;
-    onChange: StringCallback;
+    onChange: (value: string) => void;
 }
 
 interface NumberProps extends BaseProps {
     type: 'number';
     value: number;
-    onChange: NumberCallback;
+    onChange: (value: number) => void;
 }
 
 type Props = TextProps | NumberProps;
 
-export const InputContainer: FC<Props> = ({
-    type,
-    value,
-    onChange,
-    step,
-    label,
-}) => {
-    const typedOnChange = (value: string) => type === 'number'
-        ? (onChange as NumberCallback)(Number(value))
-        : (onChange as StringCallback)(value)
+const isNumberInput = (props: Props): props is NumberProps => props.type === 'number';
+
+export const InputContainer: FC<Props> = props => {
+    const onChange = (value: string) => isNumberInput(props)
+        ? props.onChange(Number(value))
+        : props.onChange(value);
 
     return (
         <InputUI
-            type={type}
-            step={step}
-            label={label}
-            value={String(value)}
-            onChange={typedOnChange}
+            type={props.type}
+            step={props.step}
+            label={props.label}
+            value={String(props.value)}
+            onChange={onChange}
         />
     )
 }
