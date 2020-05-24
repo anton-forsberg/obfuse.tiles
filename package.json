@@ -11,12 +11,15 @@
     "@types/node": "^12.12.42",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "connected-react-router": "^6.8.0",
     "immer": "^6.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-saga": "^1.1.3",
     "styled-components": "^5.1.0",
     "tinycolor2": "^1.4.1",
     "typescript": "^3.7.5"
@@ -45,6 +48,8 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.9",
+    "@types/react-router": "^5.1.7",
+    "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.0",
     "@types/tinycolor": "^1.1.27"
   }

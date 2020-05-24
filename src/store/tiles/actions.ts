@@ -1,8 +1,20 @@
 import { TileAction, TileActionTypes } from './types';
 
-export const setTile = (row: number, column: number, value?: string): TileAction => ({
-    type: TileActionTypes.SET_TILE,
+export const fillTileRequest = (row: number, column: number): TileAction => ({
+    type: TileActionTypes.FILL_TILE_REQUEST,
     row,
     column,
-    value,
 });
+
+export const fillTileSuccess = (row: number, column: number, color: string): TileAction => ({
+    type: TileActionTypes.FILL_TILE_SUCCESS,
+    row,
+    column,
+    color,
+});
+
+export const clearTile = (row: number, column: number): TileAction => ({
+    type: TileActionTypes.CLEAR_TILE,
+    row,
+    column,
+})

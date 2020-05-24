@@ -6,6 +6,7 @@ import { TileColorCount } from './types';
 
 const slicer = (state: AppState) => state.tiles;
 
+export const selectTiles = (state: AppState) => slicer(state);
 export const selectTileColorId = (state: AppState, row: number, column: number) => slicer(state)[getTileId(row, column)];
 export const selectTileColor = (state: AppState, row: number, column: number) => {
     const colorId = selectTileColorId(state, row, column);

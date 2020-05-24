@@ -8,15 +8,31 @@ export interface TileColorCount {
 }
 
 export enum TileActionTypes {
-    SET_TILE = 'SET_TILE',
+    FILL_TILE_REQUEST = 'FILL_TILE_REQUEST',
+    FILL_TILE_SUCCESS = 'FILL_TILE_SUCCESS',
+    CLEAR_TILE = 'CLEAR_TILE',
 }
 
-interface SetTileAction {
-    type: TileActionTypes.SET_TILE;
+export interface FillTileRequestAction {
+    type: TileActionTypes.FILL_TILE_REQUEST;
     row: number;
     column: number;
-    value?: string;
+}
+
+export interface FillTileSuccessAction {
+    type: TileActionTypes.FILL_TILE_SUCCESS;
+    row: number;
+    column: number;
+    color: string;
+}
+
+export interface ClearTileAction {
+    type: TileActionTypes.CLEAR_TILE;
+    row: number;
+    column: number;
 }
 
 export type TileAction =
-    SetTileAction;
+    FillTileRequestAction |
+    FillTileSuccessAction |
+    ClearTileAction;

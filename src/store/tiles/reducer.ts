@@ -6,10 +6,13 @@ const getInitialState = (): TileState => ({});
 
 export const tilesReducer = (state = getInitialState(), action: TileAction) => {
     switch(action.type) {
-        case TileActionTypes.SET_TILE:
+        case TileActionTypes.FILL_TILE_SUCCESS:
             return produce(state, draft => {
-                const tileId = getTileId(action.row, action.column);
-                action.value ? draft[tileId] = action.value : delete draft[tileId];
+                draft[getTileId(action.row, action.column)] = action.color;
+            });
+        case TileActionTypes.CLEAR_TILE:
+            return produce(state, draft => {
+                delete draft[getTileId(action.row, action.column)];
             });
         default:
             return state;
