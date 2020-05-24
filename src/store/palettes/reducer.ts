@@ -1,12 +1,6 @@
-import { dusk, fadedRainBow, rainBow, PaletteState, flowers } from "./types"
+import { getDefaultPalettes } from "./types"
 
-const getInitialState = (): PaletteState => ({
-    '1': dusk(),
-    '2': fadedRainBow(),
-    '3': rainBow(),
-    '4': flowers(),
-});
 
-export const paletteReducer = (state = getInitialState()) => {
+export const paletteReducer = (state = getDefaultPalettes()) => {
     return state;
 }

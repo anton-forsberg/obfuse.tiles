@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import { getContrastColor } from "../../../../../../utils/color";
 
+interface Props {
+    color: string;
+}
 
-export const TileCountStyle = styled.div`
-    color: #FFF;
+export const TileCountStyle = styled.div<Props>`
+    color: ${props => getContrastColor(props.color)};
     position: relative;
 
     span {

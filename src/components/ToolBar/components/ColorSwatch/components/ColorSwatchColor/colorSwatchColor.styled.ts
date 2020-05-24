@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PALETTE_COLOR_SIZE } from "../../../../../../store/palettes/types";
+import { getContrastColor } from "../../../../../../utils/color";
 
 interface Props {
     color?: string;
@@ -9,7 +10,7 @@ interface Props {
 export const ColorSwatchColorStyle = styled.div.attrs<Props>(props => ({
     style: {
         backgroundColor: props.color,
-        borderColor: props.selected ? '#fff' : 'transparent',
+        borderColor: props.selected ? getContrastColor(props.color) : 'transparent',
     },
 }))<Props>`
     border-width: 2px;

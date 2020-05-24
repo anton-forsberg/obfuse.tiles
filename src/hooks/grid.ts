@@ -16,37 +16,17 @@ export const useGrid = () => {
     }
 };
 
-export const useGridValues = () => ({
-    ...useGridRows(),
-    ...useGridColumns(),
-    ...useTileScale(),
-});
-
-export type GridValues = ReturnType<typeof useGridValues>;
-
-export const useGridRows = () => {
+export const useGridValues = () => {
     const dispatch = useDispatch();
 
     return {
         rows: useSelector(selectSelectedGridRows),
-        setRows: (value: number) => dispatch(setSelectedGridRows(value))
-    };
-}
-
-export const useGridColumns = () => {
-    const dispatch = useDispatch();
-
-    return {
+        setRows: (value: number) => dispatch(setSelectedGridRows(value)),
         columns: useSelector(selectSelectedGridColumns),
-        setColumns: (value: number) => dispatch(setSelectedGridColumns(value))
-    };
-}
-
-export const useTileScale = () => {
-    const dispatch = useDispatch();
-
-    return {
+        setColumns: (value: number) => dispatch(setSelectedGridColumns(value)),
         scale: useSelector(selectSelectedTileScale),
         setScale: (value: number) => dispatch(setSelectedTileScale(value))
     };
-}
+};
+
+export type GridValues = ReturnType<typeof useGridValues>;

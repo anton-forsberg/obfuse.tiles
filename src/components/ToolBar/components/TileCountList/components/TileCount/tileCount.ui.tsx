@@ -9,7 +9,8 @@ export const TileCountUI: FC<Props> = ({
     color,
     count
 }) => (
-    <TileCountStyle>
+    <TileCountStyle
+        color={color}>
         <TileUI color={color} size={40}/>
         <span>{count}</span>
     </TileCountStyle>

@@ -1,13 +1,20 @@
 import { produce } from 'immer';
 import { SelectionState, SelectionAction, SelectionActionTypes, DEFAULT_TILE_SCALE, DEFAULT_GRID_COLUMNS, DEFAULT_GRID_ROWS } from './types';
+import { getDefaultPalettes } from '../palettes/types';
 
-const getInitialState = (): SelectionState => ({
-    paletteId: '1',
-    colorId: '1',
-    scale: DEFAULT_TILE_SCALE,
-    rows: DEFAULT_GRID_ROWS,
-    columns: DEFAULT_GRID_COLUMNS,
-});
+const getInitialState = (): SelectionState => {
+    const palettes = getDefaultPalettes();
+    const [ paletteId ] = Object.keys(palettes);
+    const [ colorId ] = Object.keys(palettes[paletteId]);
+
+    return {
+        paletteId,
+        colorId,
+        scale: DEFAULT_TILE_SCALE,
+        rows: DEFAULT_GRID_ROWS,
+        columns: DEFAULT_GRID_COLUMNS,
+    };
+}
 
 export const selectionReducer = (state = getInitialState(), action: SelectionAction) => {
     switch(action.type) {

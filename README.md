@@ -5,6 +5,9 @@
 * Printing
 * Something asynchronous
 * Performance
+* User defined palettes
+* More than 8 colors per palette
+* Filters
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
