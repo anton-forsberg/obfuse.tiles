@@ -11,7 +11,7 @@ export const selectTileColorId = (state: AppState, row: number, column: number) 
 export const selectTileColor = (state: AppState, row: number, column: number) => {
     const colorId = selectTileColorId(state, row, column);
     if (!colorId) return;
-    return selectSelectedPaletteColor(state, colorId);
+    return selectSelectedPaletteColor(state, colorId) ?? colorId;
 }
 
 export const selectTileColorCount = (state: AppState): TileColorCount[] => {

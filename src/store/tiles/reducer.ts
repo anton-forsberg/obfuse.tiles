@@ -14,6 +14,8 @@ export const tilesReducer = (state = getInitialState(), action: TileAction) => {
             return produce(state, draft => {
                 delete draft[getTileId(action.row, action.column)];
             });
+        case TileActionTypes.SET_TILES:
+            return produce(state, () => action.tiles);
         default:
             return state;
     }

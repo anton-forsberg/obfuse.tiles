@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import { InputStyle, InputLabelStyle } from "./input.styled";
+import { InputStyle } from "./input.styled";
+import { Label } from "../Label";
+import { FormControl } from "../FormControl";
 
 interface Props {
     onChange: (value: string) => void;
@@ -16,13 +18,13 @@ export const InputUI: FC<Props> = ({
     step,
     label,
 }) => (
-    <>
-        {label && <InputLabelStyle>{label}</InputLabelStyle>}
+    <FormControl>
+        <Label text={label}/>
         <InputStyle
             step={step}
             type={type}
             value={value}
             onChange={e => onChange(e.target.value)}
         />
-    </>
+    </FormControl>
 );

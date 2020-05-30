@@ -1,12 +1,12 @@
-import { selectSelectedGridRows, selectSelectedGridColumns, selectSelectedTileSize, selectSelectedTileScale } from './../store/selections/selectors';
+import { selectSelectedGridRows, selectSelectedGridColumns, selectSelectedTileSize, selectSelectedTileScale, selectGridRows, selectGridColumns } from './../store/selections/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { getArrayOfLength } from '../utils/array';
 import { setSelectedGridRows, setSelectedGridColumns, setSelectedTileScale } from "../store/selections/actions";
+import { setTiles } from '../store/tiles/actions';
 
 
 export const useGrid = () => {
-    const rows = getArrayOfLength(useSelector(selectSelectedGridRows));
-    const columns = getArrayOfLength(useSelector(selectSelectedGridColumns));
+    const rows = useSelector(selectGridRows);
+    const columns = useSelector(selectGridColumns);
     const tileSize = useSelector(selectSelectedTileSize);
 
     return {
@@ -25,7 +25,8 @@ export const useGridValues = () => {
         columns: useSelector(selectSelectedGridColumns),
         setColumns: (value: number) => dispatch(setSelectedGridColumns(value)),
         scale: useSelector(selectSelectedTileScale),
-        setScale: (value: number) => dispatch(setSelectedTileScale(value))
+        setScale: (value: number) => dispatch(setSelectedTileScale(value)),
+        clear: () => dispatch(setTiles({})),
     };
 };
 

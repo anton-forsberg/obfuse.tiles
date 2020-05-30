@@ -1,6 +1,6 @@
 import { AppState } from '../store/index';
 import { selectSelectedTileSize } from '../store/selections/selectors';
-import { clearTile, fillTileRequest } from '../store/tiles/actions';
+import { clearTile, fillTileInit } from '../store/tiles/actions';
 import { selectTileColor } from '../store/tiles/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ export const useTile = (row: number, column: number) => {
     return {
         color: useSelector((state: AppState) => selectTileColor(state, row, column)),
         size: useSelector(selectSelectedTileSize),
-        fillTile: () => dispatch(fillTileRequest(row, column)),
+        fillTile: () => dispatch(fillTileInit(row, column)),
         clearTile: () => dispatch(clearTile(row, column)),
     };
 }

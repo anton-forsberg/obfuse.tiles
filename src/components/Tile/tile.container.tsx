@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useTile } from "../../hooks/tile";
 import { TileUI } from "./tile.ui";
-import { mouseEvent, MouseButtons } from "../../utils/mouse";
+import { mouseEvent, MouseButton } from "../../utils/pointer";
 
 interface Props {
     row: number;
@@ -14,15 +14,14 @@ export const TileContainer: FC<Props> = ({
 }) => {
     const { color, size, fillTile, clearTile } = useTile(row, column);
 
-    const mouseEventHandler = mouseEvent(({ mouseButton }) => {
-        if (mouseButton === MouseButtons.LMB) fillTile();
-        if (mouseButton === MouseButtons.RMB) clearTile();
+    const mouseHandler = mouseEvent(({ mouseButton }) => {
+        if (mouseButton === MouseButton.LMB) return fillTile();
+        if (mouseButton === MouseButton.RMB) return clearTile();
     });
 
     return (
         <TileUI
-            onMouseEnter={mouseEventHandler}
-            onMouseDown={mouseEventHandler}
+            mouseHandler={mouseHandler}
             color={color}
             row={row}
             column={column}

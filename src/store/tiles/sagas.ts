@@ -8,13 +8,13 @@ const fillTile = function* ({ row, column }: FillTileRequestAction) {
     const state: AppState = yield select();
     const selectedColorId = selectSelectedColorId(state);
     if (!selectedColorId) return;
-    yield put(actions.fillTileSuccess(row, column, selectedColorId))
+    yield put(actions.fillTileSuccess(row, column, selectedColorId));
 }
 
 const watchTileActions = function* () {
-    yield takeEvery(TileActionTypes.FILL_TILE_REQUEST, fillTile);
+    yield takeEvery(TileActionTypes.FILL_TILE_INIT, fillTile);
 }
 
 export const tilesSaga = function* () {
-    yield all([fork(watchTileActions)])
+    yield all([fork(watchTileActions)]);
 }

@@ -1,7 +1,12 @@
-import { TileAction, TileActionTypes } from './types';
+import { TileAction, TileActionTypes, TileState } from './types';
 
-export const fillTileRequest = (row: number, column: number): TileAction => ({
-    type: TileActionTypes.FILL_TILE_REQUEST,
+export const setTiles = (tiles: TileState): TileAction => ({
+    type: TileActionTypes.SET_TILES,
+    tiles,
+});
+
+export const fillTileInit = (row: number, column: number): TileAction => ({
+    type: TileActionTypes.FILL_TILE_INIT,
     row,
     column,
 });
