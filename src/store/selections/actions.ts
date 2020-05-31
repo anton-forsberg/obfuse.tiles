@@ -10,6 +10,11 @@ export const setSelectedPaletteId = (value: string): SelectionAction => ({
     value
 });
 
+export const setSelectedPluginId = (value?: string): SelectionAction => ({
+    type: SelectionActionTypes.SET_SELECTED_PLUGIN_ID,
+    value
+});
+
 export const setSelectedGridColumns = (value: number): SelectionAction => ({
     type: SelectionActionTypes.SET_SELECTED_GRID_COLUMNS,
     value

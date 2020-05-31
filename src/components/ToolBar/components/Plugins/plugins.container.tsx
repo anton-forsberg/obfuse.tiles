@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { PluginsUI } from './plugins.ui';
 import { Plugin } from '../../../../utils/types';
+import { usePlugins } from '../../../../hooks/plugins';
 
 const plugins: Plugin[] = [
     {
@@ -16,7 +17,7 @@ const plugins: Plugin[] = [
 ];
 
 export const PluginsContainer: FC = () => {
-    const [selectedPlugin, setSelectedPlugin] = useState<Plugin | undefined>(plugins[0]);
+    const { selectedPlugin, setSelectedPlugin } = usePlugins(plugins);
 
     return (
         <PluginsUI

@@ -1,13 +1,29 @@
 import { useSelector, useDispatch } from "react-redux";
-import { SortingAlgorithm } from "./types";
-import { toggleIsRunning } from "./actions";
-import { selectIsRunning } from "./selectors";
+import { SortingAlgorithmType, SortingAlgorithm } from "./types";
+import { toggleIsRunning, setSelectedAlgorithmType } from "./actions";
+import { selectIsRunning, selectSelectedAlgorithmType } from "./selectors";
+
+const algorithms: SortingAlgorithm[] = [
+    {
+        name: "Quick sort",
+        type: SortingAlgorithmType.QuickSort,
+    },
+    {
+        name: "Merge sort",
+        type: SortingAlgorithmType.MergeSort,
+    }
+]
 
 export const useSorting = () => {
     const dispatch = useDispatch();
+    const selectedAlgorithmType = useSelector(selectSelectedAlgorithmType);
+    const selectedAlgorithm = algorithms.find(({ type }) => type === selectedAlgorithmType);
 
     return {
+        algorithms,
         isRunning: useSelector(selectIsRunning),
-        toggleIsRunning: (algorithm: SortingAlgorithm) => dispatch(toggleIsRunning(algorithm)),
+        selectedAlgorithm,
+        toggleIsRunning: () => dispatch(toggleIsRunning(selectedAlgorithmType)),
+        setSelectedAlgorithm: (algorithm?: SortingAlgorithm) => dispatch(setSelectedAlgorithmType(algorithm?.type)),
     };
 }

@@ -17,7 +17,8 @@ export const PluginsUI: FC<Props> = ({
     <PluginsStyle>
         <Select
             label="Plgn"
-            value={selectedPlugin?.id}
+            placeholder="None"
+            value={selectedPlugin}
             onChange={setSelectedPlugin}
             options={plugins}
             getValue={plugin => plugin.id}

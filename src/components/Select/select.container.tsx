@@ -5,7 +5,7 @@ export type SelectValue = string | number | string[];
 
 interface Props<T>{
     options?: T[];
-    value?: SelectValue;
+    value?: T;
     placeholder?: string;
     label?: string;
     onChange: (option?: T) => void;
@@ -22,11 +22,11 @@ export const SelectContainer = <T,>({
     getValue,
     getLabel,
 }: Props<T>) => {
-    const getOption = (value?: SelectValue) => options.find(o => getValue(o) === value);
+    const getOption = (value?: SelectValue) => options.find(o => getValue(o).toString() === value);
 
     return (
         <SelectUI
-            value={value}
+            value={value && getValue(value)}
             label={label}
             onChange={val => onChange(getOption(val))}
             placeholder={placeholder}

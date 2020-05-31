@@ -1,15 +1,17 @@
 import React, { FC } from "react";
 import { useSorting } from "../../store/hooks";
 import { SortingControlsUI } from "./sortingControls.ui";
-import { SortingAlgorithm } from "../../store/types";
 
 export const SortingControlsContainer: FC = () => {
-    const { isRunning, toggleIsRunning } = useSorting();
+    const { isRunning, toggleIsRunning, algorithms, selectedAlgorithm, setSelectedAlgorithm } = useSorting();
 
     return (
         <SortingControlsUI
             isRunning={isRunning}
-            toggleIsRunning={() => toggleIsRunning(SortingAlgorithm.QuickSort)}
+            algorithms={algorithms}
+            selectedAlgorithm={selectedAlgorithm}
+            setSelectedAlgorithm={setSelectedAlgorithm}
+            toggleIsRunning={toggleIsRunning}
         />
     )
 }

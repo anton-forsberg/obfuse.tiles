@@ -4,6 +4,7 @@ export interface SelectionState {
     scale: number;
     rows: number;
     columns: number;
+    pluginId?: string;
 }
 
 export const DEFAULT_TILE_SIZE = 100;
@@ -17,6 +18,7 @@ export enum SelectionActionTypes {
     SET_SELECTED_TILE_SCALE = 'SET_SELECTED_TILE_SCALE',
     SET_SELECTED_GRID_ROWS = 'SET_SELECTED_GRID_ROWS',
     SET_SELECTED_GRID_COLUMNS = 'SET_SELECTED_GRID_COLUMNS',
+    SET_SELECTED_PLUGIN_ID = 'SET_SELECTED_PLUGIN_ID',
 }
 
 interface SetSelectedColorIdAction {
@@ -44,9 +46,14 @@ interface SetSelectedTileColumnsAction {
     value: number;
 }
 
-export type SelectionAction =
-    SetSelectedColorIdAction |
-    SetSelectedTileScaleAction |
-    SetSelectedTileRowsAction |
-    SetSelectedTileColumnsAction |
-    SetSelectedPaletteIdAction;
+interface SetSelectedPluginIdAction {
+    type: SelectionActionTypes.SET_SELECTED_PLUGIN_ID;
+    value?: string;
+}
+
+export type SelectionAction = SetSelectedColorIdAction
+    | SetSelectedTileScaleAction
+    | SetSelectedTileRowsAction
+    | SetSelectedTileColumnsAction
+    | SetSelectedPaletteIdAction
+    | SetSelectedPluginIdAction;

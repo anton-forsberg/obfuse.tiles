@@ -1,18 +1,23 @@
-import { SortingAction, SortingActionTypes, SortingAlgorithm } from "./types";
+import { SortingAction, SortingActionTypes, SortingAlgorithmType } from "./types";
 
 export const setIsRunning = (value: boolean): SortingAction => ({
     type: SortingActionTypes.SET_IS_RUNNING,
     value,
 });
 
-export const toggleIsRunning = (algorithm: SortingAlgorithm): SortingAction => ({
+export const toggleIsRunning = (algorithmType?: SortingAlgorithmType): SortingAction => ({
     type: SortingActionTypes.TOGGLE_IS_RUNNING,
-    algorithm,
+    algorithmType,
 });
 
 export const prepareSort = (): SortingAction => ({
     type: SortingActionTypes.PREPARE_SORT,
 });
+
+export const setSelectedAlgorithmType = (value?: SortingAlgorithmType): SortingAction => ({
+    type: SortingActionTypes.SET_SELECTED_ALGORITHM_TYPE,
+    value,
+})
 
 export const setSortingValues = (values: number[]): SortingAction => ({
     type: SortingActionTypes.SET_SORTING_VALUES,
@@ -27,7 +32,6 @@ export const setHighlightedColumns = (columns: number[]): SortingAction => ({
 export const quickSort = (): SortingAction => ({
     type: SortingActionTypes.QUICK_SORT,
 });
-
 
 export const mergeSort = (): SortingAction => ({
     type: SortingActionTypes.MERGE_SORT,

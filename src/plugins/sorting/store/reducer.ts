@@ -1,10 +1,11 @@
-import { SortingState, SortingAction, SortingActionTypes } from "./types"
+import { SortingState, SortingAction, SortingActionTypes, SortingAlgorithmType } from "./types"
 import produce from "immer"
 
 const getInitialState = (): SortingState => ({
     isRunning: false,
     highlightedColumns: [],
     sortingValues: [],
+    selectedAlgorithmType: SortingAlgorithmType.QuickSort,
 })
 
 export const sortingReducer = (state = getInitialState(), action: SortingAction) => {
@@ -15,6 +16,8 @@ export const sortingReducer = (state = getInitialState(), action: SortingAction)
             return produce(state, draft => { draft.highlightedColumns = action.columns });
         case SortingActionTypes.SET_SORTING_VALUES:
             return produce(state, draft => { draft.sortingValues = action.values });
+        case SortingActionTypes.SET_SELECTED_ALGORITHM_TYPE:
+            return produce(state, draft => { draft.selectedAlgorithmType = action.value });
         default:
             return state;
     }
