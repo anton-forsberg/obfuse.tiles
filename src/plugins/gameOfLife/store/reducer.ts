@@ -3,7 +3,7 @@ import produce from "immer";
 
 const getInitialState = (): GameOfLifeState => ({
     isRunning: false,
-    generationTime: 500,
+    generationTime: 100,
 });
 
 export const gameOfLifeReducer = (state = getInitialState(), action: GameOfLifeAction): GameOfLifeState => {

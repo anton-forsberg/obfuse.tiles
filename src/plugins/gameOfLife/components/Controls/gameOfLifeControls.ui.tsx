@@ -4,19 +4,18 @@ import PlayIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import { Label } from "../../../../components/Label";
 import { Input } from "../../../../components/Input";
+import { GameOfLifeBindings } from "../../store/hooks";
+import { Select } from "../../../../components/Select";
 
-interface Props {
-    isRunning: boolean;
-    generationTime: number;
-    toggleIsRunning: () => void;
-    setGenerationTime: (value: number) => void;
-}
+interface Props extends GameOfLifeBindings {}
 
 export const GameOfLifeControlsUI: FC<Props> = ({
     isRunning,
     generationTime,
     toggleIsRunning,
     setGenerationTime,
+    tilesPresets,
+    setTilesPreset,
 }) => (
     <GameOfLifeControlsStyle>
         <Label text="Ctrl" />
@@ -28,6 +27,14 @@ export const GameOfLifeControlsUI: FC<Props> = ({
             type="number"
             value={generationTime}
             onChange={setGenerationTime}
+        />
+        <Select
+            label="Ptrn"
+            placeholder="Preset"
+            options={tilesPresets}
+            onChange={setTilesPreset}
+            getValue={preset => preset.id}
+            getLabel={preset => preset.name}
         />
     </GameOfLifeControlsStyle>
 );

@@ -35,4 +35,6 @@ export const shouldSurvive = (row: number, column: number, tiles: TileState) => 
 
 export const getGenerationTiles = (rows: number[], columns: number[], tiles: TileState, colorId: string) =>
     getTileState(rows.flatMap(row => columns.map(column => [row, column]))
-        .filter(([row, column]) => shouldSurvive(row, column, tiles)), colorId)
+        .filter(([row, column]) => shouldSurvive(row, column, tiles)), colorId);
+
+export const getTilesOffset = (tiles: TileState, rowOffset: number, columnOffset: number) => tiles;

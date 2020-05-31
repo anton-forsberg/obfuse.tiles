@@ -7,6 +7,12 @@ export interface TileColorCount {
     count: number;
 }
 
+export type TilesPreset = {
+    name: string;
+    id: string;
+    tiles: () => TileState;
+};
+
 export enum TileActionTypes {
     FILL_TILE_INIT = 'FILL_TILE_INIT',
     FILL_TILE_SUCCESS = 'FILL_TILE_SUCCESS',

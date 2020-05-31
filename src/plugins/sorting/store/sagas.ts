@@ -98,73 +98,84 @@ const quickSort = function*() {
 const mergeSort = function*() {
     const sortingValues = selectSortingValues(yield select());
     let array = [...sortingValues];
-    const n = array.length;
+    const lastIndex = array.length - 1;
                  
-    for (let size = 1; size <= n - 1; size = 2 * size) 
+    for (let size = 1; size <= lastIndex; size = 2 * size) 
     { 
-        for (let start = 0; start < n - 1; start += 2 * size) 
+        for (let start = 0; start < lastIndex; start += 2 * size) 
         { 
-            let mid = Math.min(start + size - 1, n-1); 
-            let end = Math.min(start + 2 * size - 1, n-1); 
+            const mid = Math.min(start + size - 1, lastIndex); 
+            const end = Math.min(start + 2 * size - 1, lastIndex); 
         
-            let leftSize = mid - start + 1; 
-            let rightSize = end - mid; 
+            const leftSize = mid - start + 1; 
+            const rightSize = end - mid; 
         
-            let leftArray = []; 
-            let rightArray = []; 
+            const leftArray = []; 
+            const rightArray = []; 
         
-            for (let i = 0; i < leftSize; i++) 
-                leftArray[i] = array[start + i]; 
-            for (let j = 0; j < rightSize; j++) 
-                rightArray[j] = array[mid + 1 + j]; 
+            for (let i = 0; i < leftSize; i++) leftArray[i] = array[start + i]; 
+            for (let j = 0; j < rightSize; j++) rightArray[j] = array[mid + 1 + j]; 
         
             let leftIndex = 0; 
             let rightIndex = 0; 
-            let k = start; 
+            let index = start; 
             while (leftIndex < leftSize && rightIndex < rightSize) 
             {
-                if (leftArray[leftIndex] <= rightArray[rightIndex]) 
+                const leftIndexInMainArray = start + leftIndex;
+                const rightIndexInMainArray = mid + 1 + rightIndex;
+                let indexInMainArray = -1;
+
+                if (leftArray[leftIndex] <= rightArray[rightIndex])
                 {
-                    array = replaceElement(array, k, leftArray[leftIndex]);
-                    yield put(actions.setHighlightedColumns([k, start + leftIndex]));
+                    array = replaceElement(array, index, leftArray[leftIndex]);
+                    indexInMainArray = leftIndexInMainArray;
                     leftIndex++;
                 }
                 else
                 {
-                    array = replaceElement(array, k, rightArray[rightIndex]);
-                    yield put(actions.setHighlightedColumns([k, mid + 1 + rightIndex]));
+                    array = replaceElement(array, index, rightArray[rightIndex]);
+                    indexInMainArray = rightIndexInMainArray;
                     rightIndex++;
-                } 
-                k++;
+                }
 
-                yield delay(MERGE_SORT_DELAY_TIME);
-                yield put(actions.setSortingValues(array));
-                yield delay(MERGE_SORT_DELAY_TIME);
+                if (indexInMainArray !== index) {
+                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                    yield put(actions.setSortingValues(array));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                }
+                index++;
             } 
         
             while (leftIndex < leftSize) 
             { 
-                array = replaceElement(array, k, leftArray[leftIndex]);
-                leftIndex++; 
-                k++;
-                
-                yield put(actions.setHighlightedColumns([k, start + leftIndex]));
-                yield delay(MERGE_SORT_DELAY_TIME);
-                yield put(actions.setSortingValues(array));
-                yield delay(MERGE_SORT_DELAY_TIME);
+                array = replaceElement(array, index, leftArray[leftIndex]);
+                const leftIndexInMainArray = start + leftIndex;
+                const rightIndexInMainArray = mid + 1 + rightIndex;
+                if (leftIndexInMainArray !== index) {
+                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                    yield put(actions.setSortingValues(array));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                }
+                leftIndex++;
+                index++;
             } 
 
             while (rightIndex < rightSize) 
             { 
-                array = replaceElement(array, k, rightArray[rightIndex]);
+                array = replaceElement(array, index, rightArray[rightIndex]);
+                const leftIndexInMainArray = start + leftIndex;
+                const rightIndexInMainArray = mid + 1 + rightIndex;
+                if (rightIndexInMainArray !== index) {
+                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                    yield put(actions.setSortingValues(array));
+                    yield delay(MERGE_SORT_DELAY_TIME);
+                }
                 rightIndex++; 
-                k++;
-
-                yield put(actions.setHighlightedColumns([k, mid + 1 + rightIndex]));
-                yield delay(MERGE_SORT_DELAY_TIME);
-                yield put(actions.setSortingValues(array));
-                yield delay(MERGE_SORT_DELAY_TIME);
-            } 
+                index++;
+            }
         } 
     } 
 
