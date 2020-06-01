@@ -13,3 +13,5 @@ export const replaceElement = <T>(array: T[], index: number, item: T) => {
     results.splice(index, 1, item);
     return results;
 }
+
+export const toNumberArray = (array: string[]) => array.map(e => Number(e));

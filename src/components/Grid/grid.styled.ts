@@ -8,7 +8,7 @@ interface Props {
 
 export const GridStyle = styled.div<Props>`
     position: relative;
-    background-color: #FFF;
+    background-color: #333333;
     width: ${props => props.tileSize * props.columns}px;
     height: ${props => props.tileSize * props.rows}px;
 `;

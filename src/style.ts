@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
     body {
         font-family: 'Montserrat', sans-serif;
-        background-color: #e6e6e6;
+        background-color: #171717;
         margin: 0;
     }
 `;

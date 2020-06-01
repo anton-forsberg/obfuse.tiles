@@ -4,11 +4,11 @@ import { selectSelectedColorId } from '../selections/selectors';
 import * as actions from './actions';
 import { AppState } from '..';
 
-const fillTile = function* ({ row, column }: FillTileRequestAction) {
+const fillTile = function* ({ column, row }: FillTileRequestAction) {
     const state: AppState = yield select();
     const selectedColorId = selectSelectedColorId(state);
     if (!selectedColorId) return;
-    yield put(actions.fillTileSuccess(row, column, selectedColorId));
+    yield put(actions.fillTileSuccess(column, row, selectedColorId));
 }
 
 const watchTileActions = function* () {

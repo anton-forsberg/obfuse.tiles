@@ -8,11 +8,11 @@ export const tilesReducer = (state = getInitialState(), action: TileAction) => {
     switch(action.type) {
         case TileActionTypes.FILL_TILE_SUCCESS:
             return produce(state, draft => {
-                draft[getTileId(action.row, action.column)] = action.color;
+                draft[getTileId(action.column, action.row)] = action.color;
             });
         case TileActionTypes.CLEAR_TILE:
             return produce(state, draft => {
-                delete draft[getTileId(action.row, action.column)];
+                delete draft[getTileId(action.column, action.row)];
             });
         case TileActionTypes.SET_TILES:
             return produce(state, () => action.tiles);

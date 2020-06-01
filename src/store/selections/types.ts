@@ -19,6 +19,7 @@ export enum SelectionActionTypes {
     SET_SELECTED_GRID_ROWS = 'SET_SELECTED_GRID_ROWS',
     SET_SELECTED_GRID_COLUMNS = 'SET_SELECTED_GRID_COLUMNS',
     SET_SELECTED_PLUGIN_ID = 'SET_SELECTED_PLUGIN_ID',
+    SET_SELECTED_GRID_SIZE = 'SET_SELECTED_GRID_SIZE',
 }
 
 interface SetSelectedColorIdAction {
@@ -51,9 +52,16 @@ interface SetSelectedPluginIdAction {
     value?: string;
 }
 
+interface SetSelectedGridSizeAction {
+    type: SelectionActionTypes.SET_SELECTED_GRID_SIZE,
+    columns: number;
+    rows: number;
+}
+
 export type SelectionAction = SetSelectedColorIdAction
     | SetSelectedTileScaleAction
     | SetSelectedTileRowsAction
     | SetSelectedTileColumnsAction
     | SetSelectedPaletteIdAction
-    | SetSelectedPluginIdAction;
+    | SetSelectedPluginIdAction
+    | SetSelectedGridSizeAction;

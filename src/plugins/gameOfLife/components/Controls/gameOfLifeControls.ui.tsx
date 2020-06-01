@@ -25,6 +25,7 @@ export const GameOfLifeControlsUI: FC<Props> = ({
         <Input
             label="Time"
             type="number"
+            step={20}
             value={generationTime}
             onChange={setGenerationTime}
         />

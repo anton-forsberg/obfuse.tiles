@@ -5,21 +5,21 @@ export const setTiles = (tiles: TileState): TileAction => ({
     tiles,
 });
 
-export const fillTileInit = (row: number, column: number): TileAction => ({
+export const fillTileInit = (column: number, row: number): TileAction => ({
     type: TileActionTypes.FILL_TILE_INIT,
-    row,
     column,
+    row,
 });
 
-export const fillTileSuccess = (row: number, column: number, color: string): TileAction => ({
+export const fillTileSuccess = (column: number, row: number, color: string): TileAction => ({
     type: TileActionTypes.FILL_TILE_SUCCESS,
     row,
     column,
     color,
 });
 
-export const clearTile = (row: number, column: number): TileAction => ({
+export const clearTile = (column: number, row: number): TileAction => ({
     type: TileActionTypes.CLEAR_TILE,
     row,
     column,
-})
+});

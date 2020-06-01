@@ -1,39 +1,15 @@
 import { all, fork, put, takeLatest, select, delay } from 'redux-saga/effects'
 import { SortingActionTypes as ActionTypes, ToggleIsRunningAction, SortingAlgorithmType } from './types';
-import { selectIsRunning, selectSortingValues, selectHighlightedColumns } from './selectors';
+import { selectIsRunning } from './selectors';
 import * as actions from './actions';
 import { selectGridRows, selectGridColumns } from '../../../store/selections/selectors';
 import { AppState } from '../../../store';
-import { getTileState } from '../../../utils/tiles';
-import { setTiles } from '../../../store/tiles/actions';
-import { getPositionInPulse } from '../../../utils/number';
 import { swapElements, replaceElement } from '../../../utils/array';
+import { setHighlightedColumnSets, setColumnHeights, fillColumnTiles } from '../../../store/columns/actions';
+import { selectColumnHeights } from '../../../store/columns/selectors';
 
-const HIGHLIGHT_COLOR = '#00ffb8';
-const SECONDARY_HIGHLIGHT_COLOR = '#2cb9fd';
-const QUICK_SORT_DELAY_TIME = 200;
-const MERGE_SORT_DELAY_TIME = 20;
-
-const drawTiles = function*() {
-    const state: AppState = yield select();
-    const sortingValues = selectSortingValues(state);
-    const highlightedColumns = selectHighlightedColumns(state);
-    const rows = selectGridRows(state);
-    const columns = selectGridColumns(state);
-
-    const getTileColor = (row: number, column: number) => {
-        const index = highlightedColumns.indexOf(column);
-        if (index > 1) return SECONDARY_HIGHLIGHT_COLOR;
-        if (index > -1) return HIGHLIGHT_COLOR;
-        return String(getPositionInPulse(row, 8) + 1);
-    }
-
-    const tileState = getTileState(rows
-        .flatMap(row => columns.map(column => [row, column]))
-        .filter(([row, column]) => row >= rows.length - sortingValues[column]), getTileColor);
-    
-    yield put(setTiles(tileState))
-}
+const QUICK_SORT_DELAY_TIME = 10;
+const MERGE_SORT_DELAY_TIME = 10;
 
 const prepareSort = function*() {
     const state: AppState = yield select();
@@ -41,11 +17,11 @@ const prepareSort = function*() {
     const columns = selectGridColumns(state);
     const unsortedArray = columns.map(() => Math.round(Math.random() * rows.length))
 
-    yield put(actions.setSortingValues(unsortedArray));
+    yield put(setColumnHeights(unsortedArray));
 }
 
 const quickSort = function*() {
-    let array = selectSortingValues(yield select());
+    let array = selectColumnHeights(yield select());
     const stack = [[0, array.length]];
 
     while(stack.length) {
@@ -56,33 +32,26 @@ const quickSort = function*() {
         let low = start;
         let high = end - 2;
         let pivot = array[pivotIndex];
-        if (array[pivotIndex] !== array[end - 1]) {
-            array = swapElements(array, pivotIndex, end - 1);
-            yield put(actions.setHighlightedColumns([pivotIndex, end - 1]));
-            yield delay(QUICK_SORT_DELAY_TIME);
-            yield put(actions.setSortingValues(array));
+        if (array[pivotIndex] !== array[high + 1]) {
+            array = swapElements(array, pivotIndex, high + 1);
+            yield put(setColumnHeights(array, [[low], [high + 1]]));
             yield delay(QUICK_SORT_DELAY_TIME);
         }
 
         while(low < high) {
             if (array[low] < pivot) low++;
             else if (array[high] >= pivot) high--;
-            else {
-                array = swapElements(array, low, high);
-                yield put(actions.setHighlightedColumns([low, high, pivotIndex]));
-                yield delay(QUICK_SORT_DELAY_TIME);
-                yield put(actions.setSortingValues(array));
-                yield delay(QUICK_SORT_DELAY_TIME);
-            }
+            else array = swapElements(array, low, high);
+            
+            yield put(setColumnHeights(array, [[low], [high]]));
+            yield delay(QUICK_SORT_DELAY_TIME);
         }
 
         if (array[high] < pivot) high++;
         low = end - 1;
         if (array[high] !== array[low]) {
             array = swapElements(array, low, high);
-            yield put(actions.setHighlightedColumns([low, high, pivotIndex]));
-            yield delay(QUICK_SORT_DELAY_TIME);
-            yield put(actions.setSortingValues(array))
+            yield put(setColumnHeights(array, [[low], [high]]))
             yield delay(QUICK_SORT_DELAY_TIME);
         }
 
@@ -90,16 +59,15 @@ const quickSort = function*() {
         stack.push([start, high]);
     }
 
-    yield put(actions.setHighlightedColumns([]));
-    yield put(actions.setSortingValues(array));
+    yield put(fillColumnTiles());
     yield put(actions.setIsRunning(false));
 }
 
 const mergeSort = function*() {
-    const sortingValues = selectSortingValues(yield select());
-    let array = [...sortingValues];
+    const columnHeights = selectColumnHeights(yield select());
+    let array = [...columnHeights];
     const lastIndex = array.length - 1;
-                 
+
     for (let size = 1; size <= lastIndex; size = 2 * size) 
     { 
         for (let start = 0; start < lastIndex; start += 2 * size) 
@@ -118,69 +86,60 @@ const mergeSort = function*() {
         
             let leftIndex = 0; 
             let rightIndex = 0; 
-            let index = start; 
+            let index = start;
             while (leftIndex < leftSize && rightIndex < rightSize) 
             {
-                const leftIndexInMainArray = start + leftIndex;
-                const rightIndexInMainArray = mid + 1 + rightIndex;
-                let indexInMainArray = -1;
-
                 if (leftArray[leftIndex] <= rightArray[rightIndex])
                 {
-                    array = replaceElement(array, index, leftArray[leftIndex]);
-                    indexInMainArray = leftIndexInMainArray;
+                    if (leftArray[leftIndex] !== array[index]) {
+                        array = replaceElement(array, index, leftArray[leftIndex]);
+                        yield put(setColumnHeights(array, [[index], [index + 1]]));
+                        yield delay(MERGE_SORT_DELAY_TIME);
+                    }
+
                     leftIndex++;
                 }
                 else
                 {
-                    array = replaceElement(array, index, rightArray[rightIndex]);
-                    indexInMainArray = rightIndexInMainArray;
+                    if (rightArray[rightIndex] !== array[index]) {
+                        array = replaceElement(array, index, rightArray[rightIndex]);
+                        yield put(setColumnHeights(array, [[index], [index + 1]]));
+                        yield delay(MERGE_SORT_DELAY_TIME);
+                    }
+                    
                     rightIndex++;
                 }
 
-                if (indexInMainArray !== index) {
-                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                    yield put(actions.setSortingValues(array));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                }
                 index++;
             } 
         
             while (leftIndex < leftSize) 
             { 
-                array = replaceElement(array, index, leftArray[leftIndex]);
-                const leftIndexInMainArray = start + leftIndex;
-                const rightIndexInMainArray = mid + 1 + rightIndex;
-                if (leftIndexInMainArray !== index) {
-                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                    yield put(actions.setSortingValues(array));
+                if (leftArray[leftIndex] !== array[index]) {
+                    array = replaceElement(array, index, leftArray[leftIndex]);
+                    yield put(setColumnHeights(array, [[index], [index + 1]]));
                     yield delay(MERGE_SORT_DELAY_TIME);
                 }
+
                 leftIndex++;
                 index++;
             } 
 
             while (rightIndex < rightSize) 
             { 
-                array = replaceElement(array, index, rightArray[rightIndex]);
-                const leftIndexInMainArray = start + leftIndex;
-                const rightIndexInMainArray = mid + 1 + rightIndex;
-                if (rightIndexInMainArray !== index) {
-                    yield put(actions.setHighlightedColumns([leftIndexInMainArray, rightIndexInMainArray, index]));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                    yield put(actions.setSortingValues(array));
+                if (rightArray[rightIndex] !== array[index]) {
+                    array = replaceElement(array, index, rightArray[rightIndex]);
+                    yield put(setColumnHeights(array, [[index], [index + 1]]));
                     yield delay(MERGE_SORT_DELAY_TIME);
                 }
+
                 rightIndex++; 
                 index++;
             }
         } 
-    } 
+    }
 
-    yield put(actions.setHighlightedColumns([]));
-    yield put(actions.setSortingValues(array));
+    yield put(fillColumnTiles());
     yield put(actions.setIsRunning(false));
 }
 
@@ -204,8 +163,6 @@ const watchSortingActions = function* () {
     yield takeLatest(ActionTypes.PREPARE_SORT, prepareSort);
     yield takeLatest(ActionTypes.QUICK_SORT, quickSort);
     yield takeLatest(ActionTypes.MERGE_SORT, mergeSort);
-    yield takeLatest(ActionTypes.SET_HIGHLIGHTED_COLUMNS, drawTiles);
-    yield takeLatest(ActionTypes.SET_SORTING_VALUES, drawTiles);
 }
 
 export const sortingSaga = function* () {

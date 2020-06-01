@@ -10,8 +10,6 @@ export enum SortingAlgorithmType {
 
 export interface SortingState {
     isRunning: boolean;
-    highlightedColumns: number[];
-    sortingValues: number[];
     selectedAlgorithmType?: SortingAlgorithmType;
 }
 
@@ -21,9 +19,8 @@ export enum SortingActionTypes {
     PREPARE_SORT = "sorting/PREPARE_SORT",
     QUICK_SORT = "sorting/QUICK_SORT",
     MERGE_SORT = "sorting/MERGE_SORT",
-    SET_HIGHLIGHTED_COLUMNS = "sorting/SET_HIGHLIGHTED_COLUMNS",
-    SET_SORTING_VALUES = "sorting/SET_SORTING_VALUES",
     SET_SELECTED_ALGORITHM_TYPE = "sorting/SET_SELECTED_ALGORITHM_TYPE",
+    FINISHED_SORT = "sorting/FINISHED_SORT",
 }
 
 export interface ToggleIsRunningAction {
@@ -45,16 +42,6 @@ export interface PrepareSortAction {
     type: SortingActionTypes.PREPARE_SORT;
 }
 
-export interface SetHighlightedColumnsAction {
-    type: SortingActionTypes.SET_HIGHLIGHTED_COLUMNS;
-    columns: number[];
-}
-
-export interface SetSortingValuesAction {
-    type: SortingActionTypes.SET_SORTING_VALUES;
-    values: number[];
-}
-
 export interface QuickSortAction {
     type: SortingActionTypes.QUICK_SORT;
 }
@@ -65,8 +52,6 @@ export interface MergeSortAction {
 
 export type SortingAction = ToggleIsRunningAction
     | SetIsRunningAction
-    | SetHighlightedColumnsAction
-    | SetSortingValuesAction
     | SetSelectedAlgorithmTypeAction
     | PrepareSortAction
     | QuickSortAction

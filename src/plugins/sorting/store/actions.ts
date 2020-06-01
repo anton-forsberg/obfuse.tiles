@@ -17,16 +17,6 @@ export const prepareSort = (): SortingAction => ({
 export const setSelectedAlgorithmType = (value?: SortingAlgorithmType): SortingAction => ({
     type: SortingActionTypes.SET_SELECTED_ALGORITHM_TYPE,
     value,
-})
-
-export const setSortingValues = (values: number[]): SortingAction => ({
-    type: SortingActionTypes.SET_SORTING_VALUES,
-    values,
-});
-
-export const setHighlightedColumns = (columns: number[]): SortingAction => ({
-    type: SortingActionTypes.SET_HIGHLIGHTED_COLUMNS,
-    columns,
 });
 
 export const quickSort = (): SortingAction => ({

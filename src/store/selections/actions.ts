@@ -25,6 +25,12 @@ export const setSelectedGridRows = (value: number): SelectionAction => ({
     value
 });
 
+export const setSelectedGridSize = (columns: number, rows: number): SelectionAction => ({
+    type: SelectionActionTypes.SET_SELECTED_GRID_SIZE,
+    columns,
+    rows,
+});
+
 export const setSelectedTileScale = (value: number): SelectionAction => ({
     type: SelectionActionTypes.SET_SELECTED_TILE_SCALE,
     value

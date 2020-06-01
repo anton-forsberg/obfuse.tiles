@@ -19,10 +19,10 @@ export const GridUI: FC<Props> = ({
         tileSize={tileSize}
         rows={rows.length}
         columns={columns.length}>
-        {rows.map(row =>
-            columns.map(column =>
+        {columns.map(column =>
+            rows.map(row =>
                 <Tile
-                    key={getTileId(row, column)}
+                    key={getTileId(column, row)}
                     row={row}
                     column={column}
                 />))}

@@ -11,6 +11,8 @@ export type TilesPreset = {
     name: string;
     id: string;
     tiles: () => TileState;
+    rows: number;
+    columns: number;
 };
 
 export enum TileActionTypes {

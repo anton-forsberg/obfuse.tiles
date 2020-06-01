@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useTile } from "../../hooks/tile";
+import { useTile } from "../../hooks/tiles";
 import { TileUI } from "./tile.ui";
 import { mouseEvent, MouseButton } from "../../utils/pointer";
 
@@ -12,7 +12,7 @@ export const TileContainer: FC<Props> = ({
     row,
     column,
 }) => {
-    const { color, size, fillTile, clearTile } = useTile(row, column);
+    const { color, size, fillTile, clearTile } = useTile(column, row);
 
     const mouseHandler = mouseEvent(({ mouseButton }) => {
         if (mouseButton === MouseButton.LMB) return fillTile();
