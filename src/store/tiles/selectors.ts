@@ -3,8 +3,7 @@ import { AppState } from './../';
 import { selectSelectedPaletteColor, selectSelectedPalette } from '../palettes/selectors';
 import { Dictionary } from '../../utils/types';
 import { TileColorCount } from './types';
-import { getPositionInPulse } from '../../utils/number';
-import { selectColumnHeights, selectHighlightedColumnSets, selectHighlightedColumnColor } from '../columns/selectors';
+import { selectColumnHeights, selectHighlightedColumnColor } from '../columns/selectors';
 import { getAutomaticColor } from '../../utils/color';
 
 const slicer = (state: AppState) => state.tiles;

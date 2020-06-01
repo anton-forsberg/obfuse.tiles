@@ -5,7 +5,7 @@ import * as actions from './actions';
 import { selectGridRows, selectGridColumns } from '../../../store/selections/selectors';
 import { AppState } from '../../../store';
 import { swapElements, replaceElement } from '../../../utils/array';
-import { setHighlightedColumnSets, setColumnHeights, fillColumnTiles } from '../../../store/columns/actions';
+import { setColumnHeights, fillColumnTiles } from '../../../store/columns/actions';
 import { selectColumnHeights } from '../../../store/columns/selectors';
 
 const QUICK_SORT_DELAY_TIME = 10;
