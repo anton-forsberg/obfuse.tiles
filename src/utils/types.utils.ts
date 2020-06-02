@@ -9,20 +9,3 @@ export interface Plugin {
     id: string;
     component: React.LazyExoticComponent<FC>;
 }
-
-export const DEFAULT_IDS = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-];
-
-export const toIdDictionary = <T>(values: T[]): Dictionary<T> =>
-    values.reduce((dictionary, value, i) =>({
-        ...dictionary,
-        [DEFAULT_IDS[i] ?? i.toString()]: value,
-    }), {});

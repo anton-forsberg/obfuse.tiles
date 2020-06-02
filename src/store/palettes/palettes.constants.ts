@@ -1,4 +1,4 @@
-import { toIdDictionary } from "../../utils/types.utils";
+import { toIdDictionary } from "../../utils/ids.utils";
 
 export const PALETTE_COLOR_SIZE = 20;
 

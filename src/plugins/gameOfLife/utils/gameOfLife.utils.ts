@@ -2,7 +2,7 @@ import { TileState } from "../../../store/tiles/tiles.types";
 import { getTileId, getTileState } from "../../../utils/tiles.utils";
 import { toNumberArray } from "../../../utils/array.utils";
 import { UNDERPOPULATION_NEIGHBOURS, OVERPOPULATION_NEIGHBOURS, REPRODUCTION_NEIGHBOURS } from "../store/gameOfLife.constants";
-import { DEFAULT_IDS } from "../../../utils/types.utils";
+import { DEFAULT_IDS } from "../../../utils/ids.utils";
 
 export const getTileNeighbours = (column: number, row: number, tiles: TileState) => {
     const prevRow = row - 1;

@@ -1,3 +1,5 @@
+import { Dictionary } from "./types.utils";
+
 export const getArrayOfLength = (length: number) => [...Array(length)].map((e, i) => i);
 
 export const swapElements = <T>(array: T[], index1: number, index2: number) => {
@@ -15,3 +17,10 @@ export const replaceElement = <T>(array: T[], index: number, item: T) => {
 }
 
 export const toNumberArray = (array: string[]) => array.map(e => Number(e));
+
+type DictionaryKeyGetter<T> = (index: number, value: T) => string;
+export const toDictionary = <T>(values: T[], getKey: DictionaryKeyGetter<T>): Dictionary<T> => 
+    values.reduce((dictionary, value, i) =>({
+        ...dictionary,
+        [getKey(i, value)]: value,
+    }), {});
