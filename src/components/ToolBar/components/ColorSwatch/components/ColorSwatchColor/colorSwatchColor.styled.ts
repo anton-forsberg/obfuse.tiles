@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { PALETTE_COLOR_SIZE } from "../../../../../../store/palettes/types";
-import { getContrastColor } from "../../../../../../utils/color";
+import { getContrastColor } from "../../../../../../utils/color.utils";
+import { PALETTE_COLOR_SIZE } from "../../../../../../store/palettes/palettes.constants";
 
 interface Props {
     color?: string;

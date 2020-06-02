@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { GameOfLifeControlsUI } from './gameOfLifeControls.ui';
-import { useGameOfLife } from "../../store/hooks";
+import { useGameOfLife } from "../../store/gameOfLife.hooks";
 
 export const GameOfLifeControlsContainer: FC = () => {
     const {

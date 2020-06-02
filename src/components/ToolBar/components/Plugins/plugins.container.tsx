@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { PluginsUI } from './plugins.ui';
-import { Plugin } from '../../../../utils/types';
-import { usePlugins } from '../../../../hooks/plugins';
+import { Plugin } from '../../../../utils/types.utils';
+import { usePlugins } from '../../../../hooks/plugins.hooks';
 
 const plugins: Plugin[] = [
     {

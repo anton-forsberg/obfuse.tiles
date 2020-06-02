@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { usePalette } from "../../../../../../hooks/palettes";
+import { usePalette } from "../../../../../../hooks/palettes.hooks";
 import { PaletteUI } from "./palette.ui";
 
 interface Props {

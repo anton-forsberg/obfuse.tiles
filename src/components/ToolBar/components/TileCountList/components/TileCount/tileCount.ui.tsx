@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { TileUI } from "../../../../../Tile";
 import { TileCountStyle } from "./tileCount.styled";
-import { TileColorCount } from "../../../../../../store/tiles/types";
+import { TileColorCount } from "../../../../../../store/tiles/tiles.types";
 
 interface Props extends TileColorCount {}
 

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { ColorSwatchColorUI } from "./colorSwatchColor.ui";
-import { useColor } from "../../../../../../hooks/color";
+import { useColor } from "../../../../../../hooks/color.hooks";
 
 interface Props {
     colorId: string;

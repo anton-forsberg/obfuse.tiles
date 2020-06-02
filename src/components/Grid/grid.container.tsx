@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useGrid } from '../../hooks/grid';
+import { useGrid } from '../../hooks/grid.hooks';
 import { GridUI } from './grid.ui';
 
 export const GridContainer: FC = () => {

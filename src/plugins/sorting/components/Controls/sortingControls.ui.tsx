@@ -4,7 +4,7 @@ import PlayIcon from '@material-ui/icons/PlayArrow';
 import BlockIcon from '@material-ui/icons/Block';
 import { Label } from "../../../../components/Label";
 import { Select } from "../../../../components/Select";
-import { SortingAlgorithm } from "../../store/types";
+import { SortingAlgorithm } from "../../store/sorting.types";
 
 interface Props {
     algorithms: SortingAlgorithm[];

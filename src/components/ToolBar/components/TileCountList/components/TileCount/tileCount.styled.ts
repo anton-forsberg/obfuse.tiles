@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getContrastColor } from "../../../../../../utils/color";
+import { getContrastColor } from "../../../../../../utils/color.utils";
 
 interface Props {
     color: string;

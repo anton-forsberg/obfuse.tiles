@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { GridStyle } from "./grid.styled";
 import { Tile } from "../Tile";
-import { getTileId } from "../../store/tiles/utils";
+import { getTileId } from "../../utils/tiles.utils";
 
 interface Props {
     rows: number[];

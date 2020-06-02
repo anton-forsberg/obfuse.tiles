@@ -3,7 +3,7 @@ import { ToolBarStyle } from "./toolBar.styled";
 import { TileCountList } from "./components/TileCountList";
 import { ColorSwatch } from "./components/ColorSwatch";
 import { PaletteList } from "./components/PaletteList";
-import { GridValues } from "../../hooks/grid";
+import { GridValues } from "../../hooks/grid.hooks";
 import { Input } from "../Input";
 import { Plugins } from "./components/Plugins";
 import ClearIcon from '@material-ui/icons/Delete';

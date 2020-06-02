@@ -6,7 +6,7 @@ import { GlobalStyle } from './style';
 import { configureStore, history } from './configureStore';
 import { Route, Switch, Redirect } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
-import { routes } from './utils/routes';
+import { routes } from './utils/routes.utils';
 
 const store = configureStore();
 

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useSorting } from "../../store/hooks";
+import { useSorting } from "../../store/sorting.hooks";
 import { SortingControlsUI } from "./sortingControls.ui";
 
 export const SortingControlsContainer: FC = () => {

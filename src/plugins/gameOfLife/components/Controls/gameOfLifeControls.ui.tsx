@@ -4,7 +4,7 @@ import PlayIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import { Label } from "../../../../components/Label";
 import { Input } from "../../../../components/Input";
-import { GameOfLifeBindings } from "../../store/hooks";
+import { GameOfLifeBindings } from "../../store/gameOfLife.hooks";
 import { Select } from "../../../../components/Select";
 
 interface Props extends GameOfLifeBindings {}
