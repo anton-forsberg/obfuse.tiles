@@ -16,7 +16,7 @@ export const useGrid = () => {
     }
 };
 
-export const useGridValues = () => {
+export const useGridConfigurations = () => {
     const dispatch = useDispatch();
 
     return {
@@ -30,4 +30,4 @@ export const useGridValues = () => {
     };
 };
 
-export type GridValues = ReturnType<typeof useGridValues>;
+export type GridConfigurations = ReturnType<typeof useGridConfigurations>;
