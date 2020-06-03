@@ -1,11 +1,10 @@
-import { all, fork, put, takeLatest, select, delay } from 'redux-saga/effects'
+import { all, fork, put, takeLatest, select, delay, call } from 'redux-saga/effects'
 import { SortingActionTypes as ActionTypes, ToggleIsRunningAction, SortingAlgorithmType } from './sorting.types';
 import { selectIsRunning } from './sorting.selectors';
 import * as actions from './sorting.actions';
 import { selectGridRows, selectGridColumns } from '../../../store/selections/selections.selectors';
 import { AppState } from '../../../store/reducer';
-import { swapElements, replaceElement } from '../../../utils/array.utils';
-import { setColumnHeights, fillColumnTiles } from '../../../store/columns/columns.actions';
+import { setColumnHeights, fillColumnTiles, setHighlightedColumnSets } from '../../../store/columns/columns.actions';
 import { selectColumnHeights } from '../../../store/columns/columns.selectors';
 import { QUICK_SORT_DELAY_TIME, MERGE_SORT_DELAY_TIME } from './sorting.constants';
 
@@ -18,130 +17,109 @@ const prepareSort = function*() {
     yield put(setColumnHeights(unsortedArray));
 }
 
-const quickSort = function*() {
-    let array = selectColumnHeights(yield select());
-    const stack = [[0, array.length]];
-
-    while(stack.length) {
-        const [start, end] = stack.pop() ?? [];
-        if (end - start < 2) continue;
-
-        let pivotIndex = Math.floor(start + ((end - start) / 2));
-        let low = start;
-        let high = end - 2;
-        let pivot = array[pivotIndex];
-        if (array[pivotIndex] !== array[high + 1]) {
-            array = swapElements(array, pivotIndex, high + 1);
-            yield put(setColumnHeights(array, [[low], [high + 1]]));
-            yield delay(QUICK_SORT_DELAY_TIME);
-        }
-
-        while(low < high) {
-            if (array[low] < pivot) low++;
-            else if (array[high] >= pivot) high--;
-            else array = swapElements(array, low, high);
-            
-            yield put(setColumnHeights(array, [[low], [high]]));
-            yield delay(QUICK_SORT_DELAY_TIME);
-        }
-
-        if (array[high] < pivot) high++;
-        low = end - 1;
-        if (array[high] !== array[low]) {
-            array = swapElements(array, low, high);
-            yield put(setColumnHeights(array, [[low], [high]]))
-            yield delay(QUICK_SORT_DELAY_TIME);
-        }
-
-        stack.push([high + 1, end]);
-        stack.push([start, high]);
-    }
-
+const initiateQuickSort = function*() {
+    const array = selectColumnHeights(yield select());
+    yield call(quickSort, array.slice());
     yield put(fillColumnTiles());
     yield put(actions.setIsRunning(false));
 }
 
-const mergeSort = function*() {
-    const columnHeights = selectColumnHeights(yield select());
-    let array = [...columnHeights];
-    const lastIndex = array.length - 1;
+const quickSort = function* (array: number[], start = 0, end = array.length - 1): any {
+    if (!array.length) return array;
 
-    for (let size = 1; size <= lastIndex; size = 2 * size) 
-    { 
-        for (let start = 0; start < lastIndex; start += 2 * size) 
-        { 
-            const mid = Math.min(start + size - 1, lastIndex); 
-            const end = Math.min(start + 2 * size - 1, lastIndex); 
-        
-            const leftSize = mid - start + 1; 
-            const rightSize = end - mid; 
-        
-            const leftArray = []; 
-            const rightArray = []; 
-        
-            for (let i = 0; i < leftSize; i++) leftArray[i] = array[start + i]; 
-            for (let j = 0; j < rightSize; j++) rightArray[j] = array[mid + 1 + j]; 
-        
-            let leftIndex = 0; 
-            let rightIndex = 0; 
-            let index = start;
-            while (leftIndex < leftSize && rightIndex < rightSize) 
-            {
-                if (leftArray[leftIndex] <= rightArray[rightIndex])
-                {
-                    if (leftArray[leftIndex] !== array[index]) {
-                        array = replaceElement(array, index, leftArray[leftIndex]);
-                        yield put(setColumnHeights(array, [[index], [index + 1]]));
-                        yield delay(MERGE_SORT_DELAY_TIME);
-                    }
+    const partitionIndex = yield call(partition, array, start, end);
 
-                    leftIndex++;
-                }
-                else
-                {
-                    if (rightArray[rightIndex] !== array[index]) {
-                        array = replaceElement(array, index, rightArray[rightIndex]);
-                        yield put(setColumnHeights(array, [[index], [index + 1]]));
-                        yield delay(MERGE_SORT_DELAY_TIME);
-                    }
-                    
-                    rightIndex++;
-                }
+    if(start < partitionIndex - 1) yield call(quickSort, array, start, partitionIndex - 1);
+    if(partitionIndex < end) yield call(quickSort, array, partitionIndex, end);
 
-                index++;
-            } 
-        
-            while (leftIndex < leftSize) 
-            { 
-                if (leftArray[leftIndex] !== array[index]) {
-                    array = replaceElement(array, index, leftArray[leftIndex]);
-                    yield put(setColumnHeights(array, [[index], [index + 1]]));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                }
+    return array;
+}
 
-                leftIndex++;
-                index++;
-            } 
+const partition = function* (array: number[], start: number, end: number) {
+    const middle = Math.floor((start + end) / 2);
+    const pivot = array[middle];
+    let i = start;
+    let j = end;
 
-            while (rightIndex < rightSize) 
-            { 
-                if (rightArray[rightIndex] !== array[index]) {
-                    array = replaceElement(array, index, rightArray[rightIndex]);
-                    yield put(setColumnHeights(array, [[index], [index + 1]]));
-                    yield delay(MERGE_SORT_DELAY_TIME);
-                }
+    while(i <= j) {
+        while(array[i] < pivot) {
+            yield call(animateQuickSortColumns, [i, j, middle]);
+            i++;
+        }
+        while(array[j] > pivot) {
+            yield call(animateQuickSortColumns, [i, j, middle]);
+            j--;
+        }
 
-                rightIndex++; 
-                index++;
-            }
-        } 
+        if(i <= j) {
+            [array[i], array[j]] = [array[j], array[i]];
+            yield call(animateQuickSortColumns, [i, j, middle], array);
+            i++;
+            j--;
+        }
     }
 
+    return i;
+}
+
+const animateQuickSortColumns = function*(highlightedColumns: number[], columnHeights?: number[]) {
+    yield put(setHighlightedColumnSets(highlightedColumns.map(h => [h])));
+    yield delay(QUICK_SORT_DELAY_TIME);
+
+    if (columnHeights) {
+        yield put(setColumnHeights(columnHeights.slice()));
+        yield delay(QUICK_SORT_DELAY_TIME);
+    }
+}
+
+const initiateMergeSort = function*() {
+    const array = selectColumnHeights(yield select());
+    yield call(mergeSort, array.slice());
     yield put(fillColumnTiles());
     yield put(actions.setIsRunning(false));
 }
 
-const toggleGame = function*({ algorithmType }: ToggleIsRunningAction) {
+const mergeSort = function* (array: number[], helper: number[] = [], start = 0, end = array.length - 1): any {
+    if (start >= end) return array;
+
+    const middle = Math.floor(start + (end - start) / 2);
+
+    yield call(mergeSort, array, helper, start, middle);
+    yield call(mergeSort, array, helper, middle + 1, end);
+    yield call(merge, array, helper, start, middle, end);
+
+    return array;
+}
+
+const merge = function* (array: number[], helper: number[], start: number, middle: number, end: number) {
+    for (let i = start; i <= end; i++) {
+        helper[i] = array[i];
+    }
+
+    let i = start;
+    let j = middle + 1;
+    let k = start;
+
+    while (i <= middle && j <= end) {
+        if (helper[i] < helper[j]) array[k] = helper[i++];
+        else array[k] = helper[j++];
+        k++;
+
+        yield put(setColumnHeights(array.slice(), [[k], [start, end]]));
+        yield delay(MERGE_SORT_DELAY_TIME);
+    }
+
+    while (i <= middle) {
+        array[k] = helper[i];
+        k++;
+        i++;
+        yield put(setColumnHeights(array.slice(), [[k], [start, end]]));
+        yield delay(MERGE_SORT_DELAY_TIME);
+    }
+
+}
+
+const toggleSort = function*({ algorithmType }: ToggleIsRunningAction) {
     const newIsRunning = !selectIsRunning(yield select());
     yield put(actions.setIsRunning(newIsRunning));
     if (!newIsRunning) return;
@@ -157,10 +135,10 @@ const toggleGame = function*({ algorithmType }: ToggleIsRunningAction) {
 }
 
 const watchSortingActions = function* () {
-    yield takeLatest(ActionTypes.TOGGLE_IS_RUNNING, toggleGame);
+    yield takeLatest(ActionTypes.TOGGLE_IS_RUNNING, toggleSort);
     yield takeLatest(ActionTypes.PREPARE_SORT, prepareSort);
-    yield takeLatest(ActionTypes.QUICK_SORT, quickSort);
-    yield takeLatest(ActionTypes.MERGE_SORT, mergeSort);
+    yield takeLatest(ActionTypes.QUICK_SORT, initiateQuickSort);
+    yield takeLatest(ActionTypes.MERGE_SORT, initiateMergeSort);
 }
 
 export const sortingSaga = function* () {
