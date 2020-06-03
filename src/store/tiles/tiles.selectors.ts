@@ -5,6 +5,7 @@ import { Dictionary } from '../../utils/types.utils';
 import { TileColorCount } from './tiles.types';
 import { selectColumnHeights, selectHighlightedColumnColor } from '../columns/columns.selectors';
 import { getAutomaticColor } from '../../utils/color.utils';
+import tinycolor from 'tinycolor2';
 
 const slicer = (state: AppState) => state.tiles;
 
@@ -17,8 +18,9 @@ export const selectTileColor = (state: AppState, column: number, row: number) =>
 }
 
 const selectColumnTileColor = (state: AppState, column: number, row: number, columnHeight: number) => {
-    if (row >= columnHeight) return;
-    return selectHighlightedColumnColor(state, column) ?? getAutomaticColor(column, row);
+    const columnColor = selectHighlightedColumnColor(state, column);
+    if (columnColor || row >= columnHeight) return columnColor;
+    return getAutomaticColor(column, row);
 }
 
 export const selectTileColorToDraw = (state: AppState, column: number, row: number) => {

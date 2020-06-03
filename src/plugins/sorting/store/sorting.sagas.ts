@@ -25,7 +25,7 @@ const initiateQuickSort = function*() {
 }
 
 const quickSort = function* (array: number[], start = 0, end = array.length - 1): any {
-    if (!array.length) return array;
+    if (!array.length || !selectIsRunning(yield select())) return array;
 
     const partitionIndex = yield call(partition, array, start, end);
 
@@ -43,15 +43,18 @@ const partition = function* (array: number[], start: number, end: number) {
 
     while(i <= j) {
         while(array[i] < pivot) {
+            if (!selectIsRunning(yield select())) return i;
             yield call(animateQuickSortColumns, [i, j, middle]);
             i++;
         }
         while(array[j] > pivot) {
+            if (!selectIsRunning(yield select())) return i;
             yield call(animateQuickSortColumns, [i, j, middle]);
             j--;
         }
 
         if(i <= j) {
+            if (!selectIsRunning(yield select())) return i;
             [array[i], array[j]] = [array[j], array[i]];
             yield call(animateQuickSortColumns, [i, j, middle], array);
             i++;
@@ -103,18 +106,20 @@ const merge = function* (array: number[], helper: number[], start: number, middl
     while (i <= middle && j <= end) {
         if (helper[i] < helper[j]) array[k] = helper[i++];
         else array[k] = helper[j++];
-        k++;
 
+        if (!selectIsRunning(yield select())) return;
         yield put(setColumnHeights(array.slice(), [[k], [start, end]]));
         yield delay(MERGE_SORT_DELAY_TIME);
+        k++;
     }
 
     while (i <= middle) {
         array[k] = helper[i];
-        k++;
-        i++;
+        if (!selectIsRunning(yield select())) return;
         yield put(setColumnHeights(array.slice(), [[k], [start, end]]));
         yield delay(MERGE_SORT_DELAY_TIME);
+        k++;
+        i++;
     }
 
 }

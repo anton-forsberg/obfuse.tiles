@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { SortingControlsStyle } from "./sortingControls.styled";
 import PlayIcon from '@material-ui/icons/PlayArrow';
-import BlockIcon from '@material-ui/icons/Block';
+import StopIcon from '@material-ui/icons/Stop';
 import { Label } from "../../../../components/Label";
 import { Select } from "../../../../components/Select";
 import { SortingAlgorithm } from "../../store/sorting.types";
@@ -32,7 +32,7 @@ export const SortingControlsUI: FC<Props> = ({
         />
         <Label text="Ctrl" />
         {isRunning
-            ? <BlockIcon/>
+            ? <StopIcon onClick={toggleIsRunning}/>
             : <PlayIcon onClick={toggleIsRunning} />}
     </SortingControlsStyle>
 )
