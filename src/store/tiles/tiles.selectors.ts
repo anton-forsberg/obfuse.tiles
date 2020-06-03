@@ -5,7 +5,6 @@ import { Dictionary } from '../../utils/types.utils';
 import { TileColorCount } from './tiles.types';
 import { selectColumnHeights, selectHighlightedColumnColor } from '../columns/columns.selectors';
 import { getAutomaticColor } from '../../utils/color.utils';
-import tinycolor from 'tinycolor2';
 
 const slicer = (state: AppState) => state.tiles;
 
