@@ -18,10 +18,6 @@ export const GameOfLifeControlsUI: FC<Props> = ({
     setTilesPreset,
 }) => (
     <GameOfLifeControlsStyle>
-        <Label text="Ctrl" />
-        {isRunning
-            ? <PauseIcon onClick={toggleIsRunning} />
-            : <PlayIcon onClick={toggleIsRunning} />}
         <Input
             label="Time"
             type="number"
@@ -37,5 +33,9 @@ export const GameOfLifeControlsUI: FC<Props> = ({
             getValue={preset => preset.id}
             getLabel={preset => preset.name}
         />
+        <Label text="Ctrl" />
+        {isRunning
+            ? <PauseIcon onClick={toggleIsRunning} />
+            : <PlayIcon onClick={toggleIsRunning} />}
     </GameOfLifeControlsStyle>
 );

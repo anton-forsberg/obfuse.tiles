@@ -51,6 +51,7 @@ interface SetSelectedGridSizeAction {
     type: SelectionActionTypes.SET_SELECTED_GRID_SIZE,
     columns: number;
     rows: number;
+    scale?: number;
 }
 
 export type SelectionAction = SetSelectedColorIdAction

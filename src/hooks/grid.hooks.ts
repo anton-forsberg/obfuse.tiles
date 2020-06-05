@@ -1,7 +1,9 @@
 import { selectSelectedGridRows, selectSelectedGridColumns, selectSelectedTileSize, selectSelectedTileScale, selectGridRows, selectGridColumns } from '../store/selections/selections.selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedGridRows, setSelectedGridColumns, setSelectedTileScale } from "../store/selections/selections.actions";
+import { setSelectedGridRows, setSelectedGridColumns, setSelectedTileScale, setSelectedGridSize } from "../store/selections/selections.actions";
 import { setTiles } from '../store/tiles/tiles.actions';
+import { DEFAULT_GRID_COLUMNS, DEFAULT_TILE_SCALE, DEFAULT_GRID_ROWS, DEFAULT_TILE_SIZE } from '../store/selections/selections.constants';
+import { useDeviceType } from './media.hooks';
 
 
 export const useGrid = () => {
@@ -19,6 +21,8 @@ export const useGrid = () => {
 export const useGridConfigurations = () => {
     const dispatch = useDispatch();
 
+    const { setDefaultGridSizeDesktop } = useSetGridSize();
+
     return {
         rows: useSelector(selectSelectedGridRows),
         setRows: (value: number) => dispatch(setSelectedGridRows(value)),
@@ -27,7 +31,31 @@ export const useGridConfigurations = () => {
         scale: useSelector(selectSelectedTileScale),
         setScale: (value: number) => dispatch(setSelectedTileScale(value)),
         clear: () => dispatch(setTiles({})),
+        reset: setDefaultGridSizeDesktop,
     };
 };
+
+export const useSetGridSize = () => {
+    const dispatch = useDispatch();
+    const { isMobile } = useDeviceType();
+
+    const setGridSize = (columns: number, rows: number, scale?: number) => dispatch(setSelectedGridSize(columns, rows, scale));
+
+    const setDefaultGridSizeMobile = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const tileSize = Math.round(screenWidth / DEFAULT_GRID_COLUMNS);
+        const tileScale = tileSize / DEFAULT_TILE_SIZE;
+        const rows = Math.round(screenHeight / tileSize);
+
+        setGridSize(DEFAULT_GRID_COLUMNS, rows, tileScale);
+    }
+
+    return {
+        setDefaultGridSizeDesktop: () => setGridSize(DEFAULT_GRID_COLUMNS, DEFAULT_GRID_ROWS, DEFAULT_TILE_SCALE),
+        setDefaultGridSizeMobile,
+        setGridSize: (columns: number, rows: number, scale?: number) => !isMobile && setGridSize(columns, rows, scale),
+    }
+}
 
 export type GridConfigurations = ReturnType<typeof useGridConfigurations>;

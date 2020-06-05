@@ -32,7 +32,12 @@ export const selectionReducer = (state = getInitialState(), action: SelectionAct
         case ActionTypes.SET_SELECTED_PLUGIN_ID:
             return produce(state, draft => { draft.pluginId = action.value });
         case ActionTypes.SET_SELECTED_GRID_SIZE:
-            return produce(state, draft => ({ ...draft, rows: action.rows, columns: action.columns }))
+            return produce(state, draft => ({
+                ...draft,
+                rows: action.rows,
+                columns: action.columns,
+                scale: action.scale ?? draft.scale,
+            }));
         default:
             return state;
     }

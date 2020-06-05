@@ -5,9 +5,10 @@ import { ColorSwatch } from "./components/ColorSwatch";
 import { PaletteList } from "./components/PaletteList";
 import { GridConfigurations } from "../../hooks/grid.hooks";
 import { Input } from "../Input";
-import { Plugins } from "./components/Plugins";
-import ClearIcon from '@material-ui/icons/Delete';
+import { Plugins } from "../Plugins";
 import { Label } from "../Label";
+import DeleteIcon from '@material-ui/icons/Delete';
+import ReplayIcon from '@material-ui/icons/Replay';
 
 interface Props extends GridConfigurations {}
 
@@ -19,11 +20,14 @@ export const ToolBarUI: FC<Props> = ({
     scale,
     setScale,
     clear,
+    reset,
 }) => (
     <ToolBarStyle>
         <TileCountList />
         <Label text="Clear" />
-        <ClearIcon onClick={clear} />
+        <DeleteIcon onClick={clear} />
+        <Label text="Reset" />
+        <ReplayIcon onClick={reset} />
         <Input
             label="Rows"
             type="number"

@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { TOOLBAR_BACKGROUND_COLOR, TOOLBAR_TEXT_COLOR } from "../../constants/styles.constants";
 
 
 export const ToolBarStyle = styled.div`
-    background-color: #513f8e;
+    background-color: ${TOOLBAR_BACKGROUND_COLOR};
     padding: 20px;
     display: flex;
     align-items: center;
-    color: #FFF;
+    color: ${TOOLBAR_TEXT_COLOR};
 `

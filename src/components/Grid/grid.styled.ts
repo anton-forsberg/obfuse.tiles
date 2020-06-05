@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CONTROL_BACKGROUND_COLOR } from "../../constants/styles.constants";
 
 interface Props {
     tileSize: number;
@@ -8,7 +9,7 @@ interface Props {
 
 export const GridStyle = styled.div<Props>`
     position: relative;
-    background-color: #333333;
+    background-color: ${CONTROL_BACKGROUND_COLOR};
     width: ${props => props.tileSize * props.columns}px;
     height: ${props => props.tileSize * props.rows}px;
 `;

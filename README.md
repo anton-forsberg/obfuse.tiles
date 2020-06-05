@@ -1,6 +1,6 @@
 ## TODO:
 * Saving/loading
-* Responsive design
+* ~Responsive design~
 * Code splitting for plugin reducers/sagas
 * Handle touch screens
 * Printing

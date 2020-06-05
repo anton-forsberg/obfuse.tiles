@@ -1,1 +1,1 @@
-export { App } from './app.ui';
+export { AppContainer as App } from './app.container';

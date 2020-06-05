@@ -7,6 +7,7 @@ import { AppState } from '../../../store/reducer';
 import { setColumnHeights, fillColumnTiles, setHighlightedColumnSets } from '../../../store/columns/columns.actions';
 import { selectColumnHeights } from '../../../store/columns/columns.selectors';
 import { QUICK_SORT_DELAY_TIME, MERGE_SORT_DELAY_TIME } from './sorting.constants';
+import { RecursiveGenerator } from '../../../utils/types.utils';
 
 const prepareSort = function*() {
     const state: AppState = yield select();
@@ -24,7 +25,7 @@ const initiateQuickSort = function*() {
     yield put(actions.setIsRunning(false));
 }
 
-const quickSort = function* (array: number[], start = 0, end = array.length - 1): any {
+const quickSort = function* (array: number[], start = 0, end = array.length - 1): RecursiveGenerator<number[]> {
     if (!array.length || !selectIsRunning(yield select())) return array;
 
     const partitionIndex = yield call(partition, array, start, end);
@@ -82,7 +83,7 @@ const initiateMergeSort = function*() {
     yield put(actions.setIsRunning(false));
 }
 
-const mergeSort = function* (array: number[], helper: number[] = [], start = 0, end = array.length - 1): any {
+const mergeSort = function* (array: number[], helper: number[] = [], start = 0, end = array.length - 1): RecursiveGenerator<number[]> {
     if (start >= end) return array;
 
     const middle = Math.floor(start + (end - start) / 2);

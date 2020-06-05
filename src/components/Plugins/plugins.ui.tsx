@@ -1,7 +1,7 @@
 import React, { FC, Suspense } from "react";
 import { PluginsStyle } from "./plugins.styled";
-import { Select } from "../../../Select";
-import { Plugin } from "../../../../utils/types.utils";
+import { Select } from "../Select";
+import { Plugin } from "../../utils/types.utils";
 
 interface Props {
     plugins: Plugin[];

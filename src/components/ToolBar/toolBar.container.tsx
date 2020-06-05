@@ -3,7 +3,7 @@ import { ToolBarUI } from "./toolBar.ui"
 import { useGridConfigurations } from "../../hooks/grid.hooks";
 
 export const ToolBarContainer: FC = () => {
-    const { rows, setRows, columns, setColumns, scale, setScale, clear } = useGridConfigurations();
+    const { rows, setRows, columns, setColumns, scale, setScale, clear, reset } = useGridConfigurations();
 
     return (
         <ToolBarUI
@@ -14,6 +14,7 @@ export const ToolBarContainer: FC = () => {
             scale={scale}
             setScale={setScale}
             clear={clear}
+            reset={reset}
         />
-    )
+    );
 }

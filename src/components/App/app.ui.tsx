@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid } from '../Grid';
 import { AppStyle } from './app.styled';
-import { ToolBar } from '../ToolBar';
+import { ToolBarSwitch } from './components/ToolBarSwitch';
 
-export const App = () => (<>
+export const AppUI = () => (<>
     <AppStyle>
-        <ToolBar />
+        <ToolBarSwitch />
         <Grid />
     </AppStyle>
 </>);
