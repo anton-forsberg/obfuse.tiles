@@ -18,6 +18,7 @@ export interface TilePosition {
 export enum TileActionTypes {
     FILL_TILE_INIT = 'FILL_TILE_INIT',
     FILL_TILE_SUCCESS = 'FILL_TILE_SUCCESS',
+    FILL_TILES_SUCCESS = 'FILL_TILES_SUCCESS',
     CLEAR_TILE = 'CLEAR_TILE',
     SET_TILES = 'SET_TILES',
 }
@@ -35,6 +36,12 @@ export interface FillTileSuccessAction {
     color: string;
 }
 
+export interface FillTilesSuccessAction {
+    type: TileActionTypes.FILL_TILES_SUCCESS;
+    tileIds: string[];
+    color: string;
+}
+
 export interface ClearTileAction {
     type: TileActionTypes.CLEAR_TILE;
     row: number;
@@ -48,5 +55,6 @@ export interface SetTilesAction {
 
 export type TileAction = FillTileRequestAction
     | FillTileSuccessAction
+    | FillTilesSuccessAction
     | ClearTileAction
     | SetTilesAction;

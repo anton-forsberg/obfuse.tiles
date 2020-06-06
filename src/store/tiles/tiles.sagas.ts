@@ -3,12 +3,14 @@ import { TileActionTypes as ActionTypes, FillTileRequestAction } from './tiles.t
 import { selectSelectedColorId } from '../selections/selections.selectors';
 import * as actions from './tiles.actions';
 import { AppState } from '../reducer';
+import { getBrushTiles } from '../../utils/brush.utils';
 
 const fillTile = function* ({ column, row }: FillTileRequestAction) {
     const state: AppState = yield select();
     const selectedColorId = selectSelectedColorId(state);
     if (!selectedColorId) return;
-    yield put(actions.fillTileSuccess(column, row, selectedColorId));
+    const tileIds = getBrushTiles(column, row);
+    yield put(actions.fillTilesSuccess(tileIds, selectedColorId));
 }
 
 const watchTileActions = function* () {

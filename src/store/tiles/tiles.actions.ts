@@ -18,6 +18,12 @@ export const fillTileSuccess = (column: number, row: number, color: string): Act
     color,
 });
 
+export const fillTilesSuccess = (tileIds: string[], color: string): Action => ({
+    type: ActionTypes.FILL_TILES_SUCCESS,
+    tileIds,
+    color,
+});
+
 export const clearTile = (column: number, row: number): Action => ({
     type: ActionTypes.CLEAR_TILE,
     row,
