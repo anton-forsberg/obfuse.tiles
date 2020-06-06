@@ -28,6 +28,7 @@ export const NotificationStyle = styled.div`
 export const NotificationActionStyle = styled.div`
     margin-left: ${OUTER_PADDING}px;
     padding: ${BUTTON_PADDING}px;
+    cursor: pointer;
 
     &:active {
         background-color: ${tinycolor(TOOLBAR_BACKGROUND_COLOR).brighten().toHexString()}
