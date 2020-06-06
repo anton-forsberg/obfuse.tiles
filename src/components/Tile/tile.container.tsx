@@ -3,8 +3,7 @@ import { useTile } from "../../hooks/tiles.hooks";
 import { TileUI } from "./tile.ui";
 import { MouseButton } from "../../utils/pointer.utils";
 import { useInput } from "../../hooks/input.hooks";
-import { devOnly, logIterationCount } from "../../utils/dev.utils";
-import { usePrevious } from "../../hooks/general.hooks";
+import { logIterationCount } from "../../utils/dev.utils";
 
 interface Props {
     row: number;
