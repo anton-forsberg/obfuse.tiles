@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { useTile } from "../../hooks/tiles.hooks";
-import { TileUI } from "./tile.ui";
-import { MouseButton } from "../../utils/pointer.utils";
-import { useInput } from "../../hooks/input.hooks";
-import { logIterationCount, devOnly } from "../../utils/dev.utils";
+import { TileUI, TileElement } from "./tile.ui";
+import { useInput, useTouchEnter } from "../../hooks/input.hooks";
+import { MouseButton } from "../../utils/input.utils";
 
 interface Props {
     row: number;
@@ -20,10 +19,11 @@ export const TileContainer: FC<Props> = ({
         [MouseButton.RMB]: clearTile,
     });
 
-    devOnly(() => logIterationCount("TileContainer", `${column && row && (column + 1) * (row + 1)}`));
+    const ref = useTouchEnter<TileElement>(fillTile);
 
     return (
         <TileUI
+            forwardRef={ref}
             inputHandler={inputHandler}
             color={color}
             row={row}

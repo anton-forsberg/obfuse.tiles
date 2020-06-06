@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { ToolBarMobileStyle, ToolBarMobileOpenStyle, ToolBarMobileExpanderStyle } from "./toolBarMobile.style";
+import { ToolBarMobileStyle, ToolBarMobileOpenStyle, ToolBarMobileExpanderStyle, ToolBarMobileItemStyle } from "./toolBarMobile.style";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import { Plugins } from "../Plugins";
+import { PaletteList } from "../ToolBar/components/PaletteList";
+import { ColorSwatch } from "../ToolBar/components/ColorSwatch";
 
 interface Props {
     isOpen: boolean;
@@ -19,6 +21,10 @@ export const ToolBarMobileUI: FC<Props> = ({
         <ToolBarMobileOpenStyle
             isOpen={isOpen}>
             <Plugins />
+            <ToolBarMobileItemStyle>
+                <PaletteList />
+                <ColorSwatch />
+            </ToolBarMobileItemStyle>
         </ToolBarMobileOpenStyle>
         <ToolBarMobileExpanderStyle
             isHidden={isHidden}

@@ -1,6 +1,7 @@
 import { toIdDictionary } from "../../utils/ids.utils";
 
 export const PALETTE_COLOR_SIZE = 20;
+export const PALETTE_COLOR_SIZE_MOBILE = 30;
 
 export const getDefaultPalettes = () => toIdDictionary([
     dusk(),

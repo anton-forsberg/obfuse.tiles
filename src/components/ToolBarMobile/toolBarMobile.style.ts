@@ -22,7 +22,8 @@ export const ToolBarMobileStyle = styled.div`
 `;
 
 export const ToolBarMobileOpenStyle = styled.div<OpenProps>`
-    display: ${props => props.isOpen ? 'flex' : 'none'}
+    display: ${props => props.isOpen ? 'flex' : 'none'};
+    flex-direction: column;
 `;
 
 export const ToolBarMobileExpanderStyle = styled.div<ExpanderProps>`
@@ -35,4 +36,13 @@ export const ToolBarMobileExpanderStyle = styled.div<ExpanderProps>`
     align-items: center;
     justify-content: center;
     opacity: ${props => props.isHidden ? '.4' : '1'};
+`;
+
+export const ToolBarMobileItemStyle = styled.div`
+    display: flex;
+    margin-top: 10px;
+    padding: 10px 0;
+    padding-right: 10px;
+    background-color: #513f8e;
+    border-radius: 5px;
 `;

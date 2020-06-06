@@ -4,8 +4,8 @@ import { TOOLBAR_BACKGROUND_COLOR, TOOLBAR_TEXT_COLOR } from "../../constants/st
 
 export const ToolBarStyle = styled.div`
     background-color: ${TOOLBAR_BACKGROUND_COLOR};
+    color: ${TOOLBAR_TEXT_COLOR};
     padding: 20px;
     display: flex;
     align-items: center;
-    color: ${TOOLBAR_TEXT_COLOR};
 `
