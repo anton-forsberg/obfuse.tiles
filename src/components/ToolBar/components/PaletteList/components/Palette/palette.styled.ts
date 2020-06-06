@@ -14,8 +14,8 @@ interface Props {
 }
 
 export const PaletteStyle = styled.div<Props>`
-    height: ${PALETTE_WIDTH}px;
-    width: ${PALETTE_HEIGHT}px;
+    height: ${PALETTE_HEIGHT}px;
+    width: ${PALETTE_WIDTH}px;
     display: flex;
     flex-flow: column wrap;
     margin-left: 10px;
