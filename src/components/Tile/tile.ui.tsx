@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, PointerEventHandler } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import { TileStyle } from './tile.styled';
 
 interface Props {
@@ -6,8 +6,7 @@ interface Props {
     row?: number;
     column?: number;
     size: number;
-    mouseHandler?: MouseEventHandler;
-    pointerHandler?: PointerEventHandler;
+    inputHandler?: MouseEventHandler;
 };
 
 export const TileUI: FC<Props> = ({
@@ -15,13 +14,11 @@ export const TileUI: FC<Props> = ({
     row,
     column,
     size,
-    mouseHandler,
-    pointerHandler,
+    inputHandler,
 }) => (
     <TileStyle
-        onMouseEnter={mouseHandler}
-        onMouseDown={mouseHandler}
-        onPointerEnter={pointerHandler}
+        onMouseEnter={inputHandler}
+        onMouseDown={inputHandler}
         color={color}
         row={row}
         column={column}

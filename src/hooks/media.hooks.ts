@@ -1,31 +1,24 @@
 import { useTheme, useMediaQuery } from "@material-ui/core";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useSetGridSize } from "./grid.hooks";
-import { breakpoints } from "../utils/theme.utils";
+import { MediaQuery, deviceQueries } from "../utils/theme.utils";
 
 export const useMedia = () => {
-    const { isMobile } = useDeviceType();
+    const isMobile = useQuery(deviceQueries.mobile);
     const { setDefaultGridSizeDesktop, setDefaultGridSizeMobile } = useSetGridSize();
-
-    const setGridSizeDesktop = useCallback(setDefaultGridSizeDesktop, [isMobile]);
-    const setGridSizeMobile = useCallback(setDefaultGridSizeMobile, [isMobile]);
 
     useEffect(() => {
         isMobile
-            ? setGridSizeMobile()
-            : setGridSizeDesktop();
+            ? setDefaultGridSizeMobile()
+            : setDefaultGridSizeDesktop();
     }, [
         isMobile,
-        setGridSizeDesktop,
-        setGridSizeMobile,
+        setDefaultGridSizeDesktop,
+        setDefaultGridSizeMobile,
     ]);
 }
 
-export const useDeviceType = () => {
+export const useQuery = (query: MediaQuery) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(breakpoints.mobile({ theme }), { noSsr: true });
-    const isTablet = useMediaQuery(breakpoints.tablet({ theme }), { noSsr: true });
-    const isDesktop = useMediaQuery(breakpoints.desktop({ theme }), { noSsr: true });
-
-    return { isMobile, isTablet, isDesktop };
+    return useMediaQuery(query({ theme }), { noSsr: true });
 }

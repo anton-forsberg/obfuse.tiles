@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { TOOLBAR_BACKGROUND_COLOR } from "../../constants/styles.constants";
-import { breakpoints } from "../../utils/theme.utils";
+import { deviceQueries } from "../../utils/theme.utils";
 
 
 export const PluginsStyle = styled.div`
     display: flex;
 
-    ${breakpoints.mobile} {
+    ${deviceQueries.mobile} {
         flex-direction: column;
         & > * {
             margin-top: 10px;

@@ -1,18 +1,19 @@
 import React, { FC } from "react";
 import { TileCount } from "./components/TileCount";
 import { TileCountListStyle } from "./tileCountList.styled";
-import { TileColorCount } from "../../../../store/tiles/tiles.types";
 
 interface Props {
-    tileColorCounts: TileColorCount[];
+    colorIds: string[];
 }
 
 export const TileCountListUI: FC<Props> = ({
-    tileColorCounts
+    colorIds
 }) => (
     <TileCountListStyle>
-        {tileColorCounts.map(colorCount =>
-            <TileCount key={colorCount.color} {...colorCount} />)}
+        {colorIds.map(colorId =>
+            <TileCount
+                key={colorId}
+                colorId={colorId} />)}
     </TileCountListStyle>
 );
 

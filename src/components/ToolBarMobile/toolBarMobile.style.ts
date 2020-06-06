@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TOOLBAR_BACKGROUND_COLOR, TOOLBAR_TEXT_COLOR } from "../../constants/styles.constants";
+import { TOOLBAR_BACKGROUND_COLOR, TOOLBAR_TEXT_COLOR, MOBILE_TOOLBAR_Z_INDEX } from "../../constants/styles.constants";
 
 interface OpenProps {
     isOpen: boolean;
@@ -14,7 +14,7 @@ export const ToolBarMobileStyle = styled.div`
     color: ${TOOLBAR_TEXT_COLOR};
     bottom: 10px;
     right: 10px;
-    z-index: 1;
+    z-index: ${MOBILE_TOOLBAR_Z_INDEX};
     display: flex;
     flex-direction: column;
     align-items: flex-end;

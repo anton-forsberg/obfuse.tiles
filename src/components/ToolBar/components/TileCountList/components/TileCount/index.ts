@@ -1,1 +1,1 @@
-export { TileCountUI as TileCount } from './tileCount.ui';
+export { TileCountContainer as TileCount } from './tileCount.container';

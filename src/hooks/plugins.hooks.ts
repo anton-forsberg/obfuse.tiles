@@ -2,6 +2,7 @@ import { Plugin } from "../utils/types.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSelectedPluginId } from "../store/selections/selections.selectors";
 import { setSelectedPluginId } from "../store/selections/selections.actions";
+import { useCallback } from "react";
 
 export const usePlugins = (plugins: Plugin[]) => {
     const dispatch = useDispatch();
@@ -10,6 +11,6 @@ export const usePlugins = (plugins: Plugin[]) => {
 
     return {
         selectedPlugin,
-        setSelectedPlugin: (plugin?: Plugin) => dispatch(setSelectedPluginId(plugin?.id)),
+        setSelectedPlugin: useCallback((plugin?: Plugin) => dispatch(setSelectedPluginId(plugin?.id)), [dispatch]),
     }
 }

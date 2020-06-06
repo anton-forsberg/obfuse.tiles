@@ -2,11 +2,6 @@ export interface TileState {
     [tileId: string]: string;
 };
 
-export interface TileColorCount {
-    color: string;
-    count: number;
-}
-
 export interface TilesPreset {
     name: string;
     id: string;

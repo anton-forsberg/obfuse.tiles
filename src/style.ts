@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { breakpoints } from './utils/theme.utils';
+import { deviceQueries } from './utils/theme.utils';
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: #171717;
         margin: 0;
 
-        ${breakpoints.mobile} {
+        ${deviceQueries.mobile} {
             overflow: hidden;
         }
     }

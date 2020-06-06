@@ -4,7 +4,7 @@ import { selectPaletteIds } from "../../../../store/palettes/palettes.selectors"
 import { PaletteListUI } from "./paletteList.ui";
 
 export const PaletteListContainer: FC = () => {
-    const paletteIds = useSelector(selectPaletteIds);
+    const paletteIds = useSelector(selectPaletteIds, (left, right) => left.length === right.length);
 
     return (
         <PaletteListUI

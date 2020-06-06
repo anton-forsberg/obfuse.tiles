@@ -5,10 +5,21 @@
 * Handle touch screens
 * Printing
 * Something asynchronous
-* Performance
+* ~Performance~
 * User defined palettes
 * More than 8 colors per palette
 * Filters
+
+## LEARNINGS:
+* When making components that list objects, it's better to have the individual items deepload (read from redux) their data than reading it from the list component. This is because otherwise every list item will re-render every time an individual items data changes.
+* It's good to read from the redux-state in redux actions (using saga/thunk) whenever possible. This is because otherwise you are creating dependencies between your components and the redux state unnecessarily, which may cause components to re-render when they don't need to.
+* When exposing functions in custom hooks, always use the `useCallback` hook. Otherwise the hook will cause the component to re-render unnecessarily.
+* Best tools for performance improvements (reduce unnecessary renders):
+    * `equalityFn` in `useSelector`
+        * If possibly just don't return objects/arrays from redux selector functions. That will avoid this problem completely
+    * Read data concerning individual list-items from the redux store in the item component itself rather than in the list component
+    * `useCallback` in functions returned from custom hooks
+    * Don't burden components/hooks with data from redux if it can be read from the store directly when an action is dispatched
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
