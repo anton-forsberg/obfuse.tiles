@@ -3,7 +3,7 @@ import { useTile } from "../../hooks/tiles.hooks";
 import { TileUI } from "./tile.ui";
 import { MouseButton } from "../../utils/pointer.utils";
 import { useInput } from "../../hooks/input.hooks";
-import { logIterationCount } from "../../utils/dev.utils";
+import { logIterationCount, devOnly } from "../../utils/dev.utils";
 
 interface Props {
     row: number;
@@ -20,7 +20,7 @@ export const TileContainer: FC<Props> = ({
         [MouseButton.RMB]: clearTile,
     });
 
-    logIterationCount("TileContainer", `${column && row && (column + 1) * (row + 1)}`);
+    devOnly(() => logIterationCount("TileContainer", `${column && row && (column + 1) * (row + 1)}`));
 
     return (
         <TileUI
