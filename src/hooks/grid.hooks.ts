@@ -4,17 +4,20 @@ import { setSelectedGridRows, setSelectedGridColumns, setSelectedTileScale, setS
 import { setTiles } from '../store/tiles/tiles.actions';
 import { DEFAULT_GRID_COLUMNS, DEFAULT_TILE_SCALE, DEFAULT_GRID_ROWS, DEFAULT_TILE_SIZE } from '../store/selections/selections.constants';
 import { useDeviceType } from './media.hooks';
+import { getTilePositions } from '../utils/tiles.utils';
 
 
 export const useGrid = () => {
     const rows = useSelector(selectGridRows);
     const columns = useSelector(selectGridColumns);
     const tileSize = useSelector(selectSelectedTileSize);
+    const tiles = getTilePositions(columns, rows);
 
     return {
         rows,
         columns,
         tileSize,
+        tiles,
     }
 };
 
@@ -44,7 +47,7 @@ export const useSetGridSize = () => {
     const setDefaultGridSizeMobile = () => {
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
-        const tileSize = Math.round(screenWidth / DEFAULT_GRID_COLUMNS);
+        const tileSize = screenWidth / DEFAULT_GRID_COLUMNS;
         const tileScale = tileSize / DEFAULT_TILE_SIZE;
         const rows = Math.round(screenHeight / tileSize);
 

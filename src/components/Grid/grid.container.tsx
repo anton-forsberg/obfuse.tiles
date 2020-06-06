@@ -3,13 +3,14 @@ import { useGrid } from '../../hooks/grid.hooks';
 import { GridUI } from './grid.ui';
 
 export const GridContainer: FC = () => {
-    const { rows, columns, tileSize } = useGrid();
+    const { columns, rows, tiles, tileSize } = useGrid();
 
     return (
         <GridUI
-            tileSize={tileSize}
-            rows={rows}
             columns={columns}
+            rows={rows}
+            tileSize={tileSize}
+            tiles={tiles}
         />
     )
 };

@@ -16,7 +16,7 @@ const generation = function* ({ value }: NextGenerationAction) {
     const tiles = selectTiles(state);
     const rows = selectGridRows(state);
     const columns = selectGridColumns(state);
-    const generationTiles = getGenerationTiles(rows, columns, tiles, String(colorId));
+    const generationTiles = getGenerationTiles(columns, rows, tiles, String(colorId));
     yield put(setTiles(generationTiles));
     yield delay(selectGenerationTime(state));
     if (selectIsRunning(yield select())) yield put(actions.nextGeneration(value + 1));

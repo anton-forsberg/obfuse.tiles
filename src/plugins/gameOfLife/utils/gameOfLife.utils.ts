@@ -1,6 +1,5 @@
 import { TileState } from "../../../store/tiles/tiles.types";
-import { getTileId, getTileState } from "../../../utils/tiles.utils";
-import { toNumberArray } from "../../../utils/array.utils";
+import { getTileId, getTileState, getTilePositions, getTilePosition } from "../../../utils/tiles.utils";
 import { UNDERPOPULATION_NEIGHBOURS, OVERPOPULATION_NEIGHBOURS, REPRODUCTION_NEIGHBOURS } from "../store/gameOfLife.constants";
 import { DEFAULT_IDS } from "../../../constants/ids.constants";
 
@@ -35,13 +34,13 @@ export const shouldSurvive = (column: number, row: number, tiles: TileState) => 
     return isAlive;
 }
 
-export const getGenerationTiles = (rows: number[], columns: number[], tiles: TileState, colorId: string) =>
-    getTileState(rows.flatMap(row => columns.map(column => [column, row]))
-        .filter(([column, row]) => shouldSurvive(column, row, tiles)), colorId);
+export const getGenerationTiles = (columns: number[], rows: number[], tiles: TileState, colorId: string) =>
+    getTileState(getTilePositions(columns, rows)
+        .filter(({ column, row }) => shouldSurvive(column, row, tiles)), colorId);
 
 export const getTilesOffset = (tiles: TileState, columnOffset: number, rowOffset: number) =>
     getTileState(
         Object.keys(tiles)
-        .map(tileId => toNumberArray(tileId.split(':')))
-        .map(([column, row]) => [column + columnOffset, row + rowOffset]),
+        .map(tileId => getTilePosition(tileId))
+        .map(({ column, row }) => ({ column: column + columnOffset, row: row + rowOffset })),
     DEFAULT_IDS[0]);

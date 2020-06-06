@@ -7,13 +7,18 @@ export interface TileColorCount {
     count: number;
 }
 
-export type TilesPreset = {
+export interface TilesPreset {
     name: string;
     id: string;
     tiles: () => TileState;
     rows?: number;
     columns?: number;
 };
+
+export interface TilePosition {
+    column: number;
+    row: number;
+}
 
 export enum TileActionTypes {
     FILL_TILE_INIT = 'FILL_TILE_INIT',

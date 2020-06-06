@@ -1,6 +1,7 @@
 import { useTheme, useMediaQuery } from "@material-ui/core";
 import { useEffect, useCallback } from "react";
 import { useSetGridSize } from "./grid.hooks";
+import { breakpoints } from "../utils/theme.utils";
 
 export const useMedia = () => {
     const { isMobile } = useDeviceType();
@@ -22,9 +23,9 @@ export const useMedia = () => {
 
 export const useDeviceType = () => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+    const isMobile = useMediaQuery(breakpoints.mobile({ theme }), { noSsr: true });
+    const isTablet = useMediaQuery(breakpoints.tablet({ theme }), { noSsr: true });
+    const isDesktop = useMediaQuery(breakpoints.desktop({ theme }), { noSsr: true });
 
     return { isMobile, isTablet, isDesktop };
 }

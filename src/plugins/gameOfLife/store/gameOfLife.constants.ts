@@ -30,15 +30,11 @@ export const PRESETS: TilesPreset[] = [
         name: 'Glider gun',
         id: 'glider-gun',
         tiles: () => getTilesOffset(PRESET_GOSPER_GLIDER_GUN, 0, 0),
-        rows: 27,
-        columns: 38,
     },
     {
         name: 'Antons',
         id: 'antons',
-        tiles: () => getTilesOffset(ANTONS, 0, 0),
-        rows: 23,
-        columns: 40,
+        tiles: () => getTilesOffset(ANTONS, 1, 0),
     },
 ]
 

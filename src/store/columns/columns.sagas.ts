@@ -1,5 +1,5 @@
 import { all, fork, put, takeLatest, select } from 'redux-saga/effects'
-import { getTileState } from "../../utils/tiles.utils";
+import { getTileState, getTilePositions } from "../../utils/tiles.utils";
 import { setHighlightedColumnSets, setColumnHeights } from "./columns.actions";
 import { setTiles } from "../tiles/tiles.actions";
 import { selectGridRows, selectGridColumns } from "../selections/selections.selectors";
@@ -14,9 +14,8 @@ const fillColumnTiles = function*() {
     const rows = selectGridRows(state);
     const columns = selectGridColumns(state);
 
-    const tileState = getTileState(rows
-        .flatMap(row => columns.map(column => [column, row]))
-        .filter(([column, row]) => row < columnHeights[column]), getAutomaticColor);
+    const tileState = getTileState(getTilePositions(columns, rows)
+        .filter(({ column, row }) => row < columnHeights[column]), getAutomaticColor);
     
     yield put(setColumnHeights([]));
     yield put(setHighlightedColumnSets([]));

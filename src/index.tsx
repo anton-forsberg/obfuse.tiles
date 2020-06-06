@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
-import { GlobalStyle } from './style';
 import { configureStore, history } from './configureStore';
 import { Route, Switch, Redirect } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
@@ -20,8 +19,6 @@ ReactDOM.render(
             <Redirect from='*' to={routes[0].path} />
           </Switch>
       </ConnectedRouter>
-      
-      <GlobalStyle />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
