@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { GameOfLifeControlsStyle } from "./gameOfLifeControls.styled";
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-import { Label } from "../../../../components/Label";
 import { Input } from "../../../../components/Input";
 import { GameOfLifeBindings } from "../../store/gameOfLife.hooks";
 import { Select } from "../../../../components/Select";
+import { IconButton } from "../../../../components/IconButton";
 
 interface Props extends GameOfLifeBindings {}
 
@@ -33,9 +33,13 @@ export const GameOfLifeControlsUI: FC<Props> = ({
             getValue={preset => preset.id}
             getLabel={preset => preset.name}
         />
-        <Label text="Ctrl" />
-        {isRunning
-            ? <PauseIcon onClick={toggleIsRunning} />
-            : <PlayIcon onClick={toggleIsRunning} />}
+        <IconButton
+            text="Ctrl"
+            onClick={toggleIsRunning}
+            icon={isRunning
+                ? PauseIcon
+                : PlayIcon
+            }
+        />
     </GameOfLifeControlsStyle>
 );

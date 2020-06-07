@@ -6,10 +6,10 @@ import { PaletteList } from "../PaletteList";
 import { GridConfigurations } from "../../hooks/grid.hooks";
 import { Input } from "../Input";
 import { Plugins } from "../Plugins";
-import { Label } from "../Label";
 import ReplayIcon from '@material-ui/icons/Replay';
 import { BrushList } from "../BrushList";
 import { GridClearButton } from "../GridClearButton";
+import { IconButton } from "../IconButton";
 
 interface Props extends GridConfigurations {}
 
@@ -25,8 +25,11 @@ export const ToolBarUI: FC<Props> = ({
     <ToolBarStyle>
         <ColorCountList />
         <GridClearButton />
-        <Label text="Reset" />
-        <ReplayIcon onClick={reset} />
+        <IconButton
+            text="Reset"
+            onClick={reset}
+            icon={ReplayIcon}
+        />
         <Input
             label="Rows"
             type="number"

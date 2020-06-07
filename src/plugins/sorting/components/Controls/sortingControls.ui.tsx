@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { SortingControlsStyle } from "./sortingControls.styled";
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
-import { Label } from "../../../../components/Label";
 import { Select } from "../../../../components/Select";
 import { SortingAlgorithm } from "../../store/sorting.types";
+import { IconButton } from "../../../../components/IconButton";
 
 interface Props {
     algorithms: SortingAlgorithm[];
@@ -30,9 +30,13 @@ export const SortingControlsUI: FC<Props> = ({
             getValue={algorithm => algorithm.type}
             getLabel={algorithm => algorithm.name}
         />
-        <Label text="Ctrl" />
-        {isRunning
-            ? <StopIcon onClick={toggleIsRunning}/>
-            : <PlayIcon onClick={toggleIsRunning} />}
+        <IconButton
+            text="Ctrl"
+            onClick={toggleIsRunning}
+            icon={isRunning
+                ? StopIcon
+                : PlayIcon
+            }
+        />
     </SortingControlsStyle>
 )
