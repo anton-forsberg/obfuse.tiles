@@ -1,3 +1,5 @@
+import { BrushType } from "../../utils/brush.utils";
+
 export interface SelectionState {
     colorId?: string;
     paletteId?: string;
@@ -5,6 +7,7 @@ export interface SelectionState {
     rows: number;
     columns: number;
     pluginId?: string;
+    brush: BrushType;
 }
 
 export enum SelectionActionTypes {
@@ -15,6 +18,7 @@ export enum SelectionActionTypes {
     SET_SELECTED_GRID_COLUMNS = 'SET_SELECTED_GRID_COLUMNS',
     SET_SELECTED_PLUGIN_ID = 'SET_SELECTED_PLUGIN_ID',
     SET_SELECTED_GRID_SIZE = 'SET_SELECTED_GRID_SIZE',
+    SET_SELECTED_BRUSH = 'SET_SELECTED_BRUSH',
 }
 
 interface SetSelectedColorIdAction {
@@ -54,10 +58,16 @@ interface SetSelectedGridSizeAction {
     scale?: number;
 }
 
+interface SetSelectedBrushAction {
+    type: SelectionActionTypes.SET_SELECTED_BRUSH,
+    value: BrushType;
+}
+
 export type SelectionAction = SetSelectedColorIdAction
     | SetSelectedTileScaleAction
     | SetSelectedTileRowsAction
     | SetSelectedTileColumnsAction
     | SetSelectedPaletteIdAction
     | SetSelectedPluginIdAction
-    | SetSelectedGridSizeAction;
+    | SetSelectedGridSizeAction
+    | SetSelectedBrushAction;

@@ -20,6 +20,7 @@ export const PaletteStyle = styled.div<Props>`
     flex-flow: column wrap;
     margin-left: 10px;
     position: relative;
+    cursor: pointer;
 
     &:after {
         content: '';

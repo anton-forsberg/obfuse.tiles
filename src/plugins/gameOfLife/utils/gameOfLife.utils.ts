@@ -1,5 +1,5 @@
 import { TileState } from "../../../store/tiles/tiles.types";
-import { getTileId, getTileState, getTilePositions, getTilePosition } from "../../../utils/tiles.utils";
+import { getTileId, getTileState, getTilePositions, getTilePositionByTileId } from "../../../utils/tiles.utils";
 import { UNDERPOPULATION_NEIGHBOURS, OVERPOPULATION_NEIGHBOURS, REPRODUCTION_NEIGHBOURS } from "../store/gameOfLife.constants";
 import { DEFAULT_IDS } from "../../../constants/ids.constants";
 
@@ -41,6 +41,6 @@ export const getGenerationTiles = (columns: number[], rows: number[], tiles: Til
 export const getTilesOffset = (tiles: TileState, columnOffset: number, rowOffset: number) =>
     getTileState(
         Object.keys(tiles)
-        .map(tileId => getTilePosition(tileId))
+        .map(tileId => getTilePositionByTileId(tileId))
         .map(({ column, row }) => ({ column: column + columnOffset, row: row + rowOffset })),
     DEFAULT_IDS[0]);

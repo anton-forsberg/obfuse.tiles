@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
         background-color: #171717;
         margin: 0;
 
+        *[onClick] {
+            cursor: pointer;
+        }
+
         ${deviceQueries.mobile} {
             overflow: hidden;
         }

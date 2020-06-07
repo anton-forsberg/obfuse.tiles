@@ -2,13 +2,14 @@ import { TileState, TilePosition } from "../store/tiles/tiles.types";
 import { toNumberArray } from "./array.utils";
 
 export const getTileId = (column: number, row: number) => `${column}:${row}`;
+export const getTileIdByPostition = ({ column, row }: TilePosition) => getTileId(column, row);
 
-export const getTilePositions = (columns: number[], rows: number[]): TilePosition[] => rows.flatMap(row => columns.map(column => ({ column, row })));
+export const getTilePosition = (column: number, row: number): TilePosition => ({ column, row });
+export const getTilePositionByPair = ([ column, row ]: number[]): TilePosition => getTilePosition(column, row);
+export const getTilePositionByPairs = (columnRowPairs: number[][]) => columnRowPairs.map(getTilePositionByPair); 
 
-export const getTilePosition = (tileId: string): TilePosition => {
-    const [ column, row ] = toNumberArray(tileId.split(':'));
-    return { column, row };
-}
+export const getTilePositions = (columns: number[], rows: number[]): TilePosition[] => rows.flatMap(row => columns.map(column => getTilePosition(column, row)));
+export const getTilePositionByTileId = (tileId: string): TilePosition => getTilePositionByPair(toNumberArray(tileId.split(':')))
 
 export const getGridCode = (tiles: TileState) =>
     Object.keys(tiles)

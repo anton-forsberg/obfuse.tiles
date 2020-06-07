@@ -9,6 +9,7 @@ import { Plugins } from "../Plugins";
 import { Label } from "../Label";
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReplayIcon from '@material-ui/icons/Replay';
+import { BrushList } from "../BrushList";
 
 interface Props extends GridConfigurations {}
 
@@ -48,6 +49,7 @@ export const ToolBarUI: FC<Props> = ({
             step={0.05}
         />
         <Plugins />
+        <BrushList />
         <PaletteList />
         <PaletteColorList />
     </ToolBarStyle>

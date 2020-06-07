@@ -1,56 +1,60 @@
-import { getTileId } from "./tiles.utils"
+import { getTilePosition as tile, getTileIdByPostition } from "./tiles.utils"
 import { StrictDictionary } from "./types.utils";
+import { TilePosition } from "../store/tiles/tiles.types";
 
-export enum BrushSize {
+export enum BrushType {
     SM,
     MD,
     LG,
     XL,
 }
 
-type BrushTilesGetter = (c: number, r: number) => number[][];
+const isBrushType = (value: string | BrushType): value is BrushType => typeof value === "number";
+export const getBrushTypes = () => Object.values(BrushType).filter(isBrushType)
 
-const getBrushTilesSM: BrushTilesGetter = (column, row) => [[column, row]]
+type BrushTilesGetter = (c?: number, r?: number) => TilePosition[];
 
-const getBrushTilesMD: BrushTilesGetter = (column, row) => [
+const getBrushTilesSM: BrushTilesGetter = (column = 0, row = 0) => [tile(column, row)];
+
+const getBrushTilesMD: BrushTilesGetter = (column = 0, row = 0) => [
     ...getBrushTilesSM(column, row),
-    [column, row - 1],
-    [column - 1, row],
-    [column + 1, row],
-    [column, row + 1]
+    tile(column, row - 1),
+    tile(column - 1, row),
+    tile(column + 1, row),
+    tile(column, row + 1)
 ];
 
-const getBrushTilesLG: BrushTilesGetter = (column, row) => [
+const getBrushTilesLG: BrushTilesGetter = (column = 0, row = 0) => [
     ...getBrushTilesMD(column, row),
-    [column, row - 2],
-    [column - 1, row - 1],
-    [column + 1, row - 1],
-    [column - 2, row],
-    [column + 2, row],
-    [column - 1, row + 1],
-    [column + 1, row + 1],
-    [column, row + 2]
+    tile(column, row - 2),
+    tile(column - 1, row - 1),
+    tile(column + 1, row - 1),
+    tile(column - 2, row),
+    tile(column + 2, row),
+    tile(column - 1, row + 1),
+    tile(column + 1, row + 1),
+    tile(column, row + 2)
 ];
 
-const getBrushTilesXL: BrushTilesGetter = (column, row) => [
+const getBrushTilesXL: BrushTilesGetter = (column = 0, row = 0) => [
     ...getBrushTilesLG(column, row),
-    [column - 1, row - 2],
-    [column - 2, row - 1],
-    [column + 1, row - 2],
-    [column + 2, row - 1],
-    [column - 2, row + 1],
-    [column - 1, row + 2],
-    [column + 2, row + 1],
-    [column + 1, row + 2]
+    tile(column - 1, row - 2),
+    tile(column - 2, row - 1),
+    tile(column + 1, row - 2),
+    tile(column + 2, row - 1),
+    tile(column - 2, row + 1),
+    tile(column - 1, row + 2),
+    tile(column + 2, row + 1),
+    tile(column + 1, row + 2)
 ]
 
-type BrushTiles = StrictDictionary<BrushTilesGetter, BrushSize>;
-const brushTiles: BrushTiles = {
-    [BrushSize.SM]: getBrushTilesSM,
-    [BrushSize.MD]: getBrushTilesMD,
-    [BrushSize.LG]: getBrushTilesLG,
-    [BrushSize.XL]: getBrushTilesXL
+type Brushes = StrictDictionary<BrushTilesGetter, BrushType>;
+export const brushes: Brushes = {
+    [BrushType.SM]: getBrushTilesSM,
+    [BrushType.MD]: getBrushTilesMD,
+    [BrushType.LG]: getBrushTilesLG,
+    [BrushType.XL]: getBrushTilesXL
 }
 
-export const getBrushTiles = (column: number, row: number, brushSize = BrushSize.SM) =>
-    brushTiles[brushSize](column, row).map(([c, r]) => getTileId(c, r));
+export const getBrushTileIds = (column: number, row: number, brushType = BrushType.SM) =>
+    brushes[brushType](column, row).map(getTileIdByPostition);

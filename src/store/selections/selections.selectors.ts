@@ -20,3 +20,4 @@ export const selectSelectedGridColumns = (state: AppState) => slicer(state).colu
 export const selectGridColumns = (state: AppState) => getArrayOfLength(selectSelectedGridColumns(state));
 export const selectSelectedPaletteId = (state: AppState) => slicer(state).paletteId;
 export const selectSelectedPluginId = (state: AppState) => slicer(state).pluginId;
+export const selectSelectedBrush = (state: AppState) => slicer(state).brush;

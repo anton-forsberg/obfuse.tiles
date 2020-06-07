@@ -2,6 +2,7 @@ import { produce } from 'immer';
 import { DEFAULT_TILE_SCALE, DEFAULT_GRID_ROWS, DEFAULT_GRID_COLUMNS } from './selections.constants';
 import { SelectionState, SelectionAction, SelectionActionTypes as ActionTypes } from './selections.types';
 import { getDefaultPalettes } from '../palettes/palettes.constants';
+import { BrushType } from '../../utils/brush.utils';
 
 const getInitialState = (): SelectionState => {
     const palettes = getDefaultPalettes();
@@ -10,6 +11,7 @@ const getInitialState = (): SelectionState => {
     const [ colorId ] = Object.keys(palette);
 
     return {
+        brush: BrushType.MD,
         paletteId,
         colorId,
         scale: DEFAULT_TILE_SCALE,
@@ -32,6 +34,8 @@ export const selectionReducer = (state = getInitialState(), action: SelectionAct
             return produce(state, draft => { draft.columns = action.value });
         case ActionTypes.SET_SELECTED_PLUGIN_ID:
             return produce(state, draft => { draft.pluginId = action.value });
+        case ActionTypes.SET_SELECTED_BRUSH:
+            return produce(state, draft => { draft.brush = action.value });
         case ActionTypes.SET_SELECTED_GRID_SIZE:
             return produce(state, draft => ({
                 ...draft,

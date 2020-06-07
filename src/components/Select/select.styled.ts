@@ -10,6 +10,7 @@ export const SelectStyle = styled.select`
     border: none;
     padding: 5px;
     height: 40px;
+    cursor: pointer;
 `;
 
 export const SelectOptionStyle = styled.option`

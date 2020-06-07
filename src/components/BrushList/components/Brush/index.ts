@@ -1,0 +1,1 @@
+export { BrushContainer as Brush } from './brush.container';

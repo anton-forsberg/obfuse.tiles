@@ -11,14 +11,14 @@ export const fillTileInit = (column: number, row: number): Action => ({
     row,
 });
 
-export const fillTileSuccess = (column: number, row: number, color: string): Action => ({
+export const fillTileSuccess = (column: number, row: number, color?: string): Action => ({
     type: ActionTypes.FILL_TILE_SUCCESS,
     row,
     column,
     color,
 });
 
-export const fillTilesSuccess = (tileIds: string[], color: string): Action => ({
+export const fillTilesSuccess = (tileIds: string[], color?: string): Action => ({
     type: ActionTypes.FILL_TILES_SUCCESS,
     tileIds,
     color,

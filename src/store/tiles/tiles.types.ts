@@ -1,6 +1,6 @@
-export interface TileState {
-    [tileId: string]: string;
-};
+import { Dictionary } from "../../utils/types.utils";
+
+export type TileState = Dictionary<string>;
 
 export interface TilesPreset {
     name: string;
@@ -33,13 +33,13 @@ export interface FillTileSuccessAction {
     type: TileActionTypes.FILL_TILE_SUCCESS;
     row: number;
     column: number;
-    color: string;
+    color?: string;
 }
 
 export interface FillTilesSuccessAction {
     type: TileActionTypes.FILL_TILES_SUCCESS;
     tileIds: string[];
-    color: string;
+    color?: string;
 }
 
 export interface ClearTileAction {

@@ -1,4 +1,5 @@
 import { SelectionAction as Action, SelectionActionTypes as ActionTypes } from "./selections.types";
+import { BrushType } from "../../utils/brush.utils";
 
 export const setSelectedColorId = (value: string): Action => ({
     type: ActionTypes.SET_SELECTED_COLOR_ID,
@@ -34,5 +35,10 @@ export const setSelectedGridSize = (columns: number, rows: number, scale?: numbe
 
 export const setSelectedTileScale = (value: number): Action => ({
     type: ActionTypes.SET_SELECTED_TILE_SCALE,
+    value
+});
+
+export const setSelectedBrush = (value: BrushType): Action => ({
+    type: ActionTypes.SET_SELECTED_BRUSH,
     value
 });
