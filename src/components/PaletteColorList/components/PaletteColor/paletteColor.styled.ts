@@ -5,13 +5,13 @@ import { deviceQueries } from "../../../../utils/theme.utils";
 
 interface Props {
     color?: string;
-    selected: boolean;
+    isSelected: boolean;
 }
 
 export const PaletteColorStyle = styled.div.attrs<Props>(props => ({
     style: {
         backgroundColor: props.color,
-        borderColor: props.selected ? getContrastColor(props.color) : 'transparent',
+        borderColor: props.isSelected ? getContrastColor(props.color) : 'transparent',
     },
 }))<Props>`
     border-width: 2px;

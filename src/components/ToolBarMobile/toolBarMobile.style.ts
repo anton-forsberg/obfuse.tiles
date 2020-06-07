@@ -40,6 +40,7 @@ export const ToolBarMobileExpanderStyle = styled.div<ExpanderProps>`
 
 export const ToolBarMobileItemStyle = styled.div`
     display: flex;
+    align-items: center;
     margin-top: 10px;
     padding: 10px 0;
     padding-right: 10px;

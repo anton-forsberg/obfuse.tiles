@@ -1,31 +1,19 @@
-import { TileAction as Action, TileActionTypes as ActionTypes, TileState } from './tiles.types';
+import { TileAction as Action, TileActionTypes as ActionTypes, TileState, SetTileOperation } from './tiles.types';
 
-export const setTiles = (tiles: TileState): Action => ({
-    type: ActionTypes.SET_TILES,
+export const setAllTiles = (tiles: TileState = {}): Action => ({
+    type: ActionTypes.SET_ALL_TILES,
     tiles,
 });
 
-export const fillTileInit = (column: number, row: number): Action => ({
-    type: ActionTypes.FILL_TILE_INIT,
+export const setTilesInit = (column: number, row: number, operation: SetTileOperation): Action => ({
+    type: ActionTypes.SET_TILES_INIT,
     column,
     row,
+    operation,
 });
 
-export const fillTileSuccess = (column: number, row: number, color?: string): Action => ({
-    type: ActionTypes.FILL_TILE_SUCCESS,
-    row,
-    column,
-    color,
-});
-
-export const fillTilesSuccess = (tileIds: string[], color?: string): Action => ({
-    type: ActionTypes.FILL_TILES_SUCCESS,
+export const setTilesSuccess = (tileIds: string[], color?: string): Action => ({
+    type: ActionTypes.SET_TILES_SUCCESS,
     tileIds,
     color,
-});
-
-export const clearTile = (column: number, row: number): Action => ({
-    type: ActionTypes.CLEAR_TILE,
-    row,
-    column,
 });

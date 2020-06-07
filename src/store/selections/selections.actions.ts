@@ -1,7 +1,7 @@
 import { SelectionAction as Action, SelectionActionTypes as ActionTypes } from "./selections.types";
 import { BrushType } from "../../utils/brush.utils";
 
-export const setSelectedColorId = (value: string): Action => ({
+export const setSelectedColorId = (value?: string): Action => ({
     type: ActionTypes.SET_SELECTED_COLOR_ID,
     value
 });

@@ -1,7 +1,7 @@
 import { all, fork, put, takeLatest, select } from 'redux-saga/effects'
 import { getTileState, getTilePositions } from "../../utils/tiles.utils";
 import { setHighlightedColumnSets, setColumnHeights } from "./columns.actions";
-import { setTiles } from "../tiles/tiles.actions";
+import { setAllTiles } from "../tiles/tiles.actions";
 import { selectGridRows, selectGridColumns } from "../selections/selections.selectors";
 import { selectColumnHeights } from "./columns.selectors";
 import { AppState } from "../reducer";
@@ -19,7 +19,7 @@ const fillColumnTiles = function*() {
     
     yield put(setColumnHeights([]));
     yield put(setHighlightedColumnSets([]));
-    yield put(setTiles(tileState));
+    yield put(setAllTiles(tileState));
 }
 
 const watchColumnActions = function* () {

@@ -5,12 +5,12 @@ import { AppState } from "../store/reducer";
 import { selectSelectedPaletteColor } from "../store/palettes/palettes.selectors";
 import { useCallback } from "react";
 
-export const useColor = (colorId: string) => {
+export const useColor = (colorId?: string) => {
     const dispatch = useDispatch();
 
     return {
         color: useSelector((state: AppState) => selectSelectedPaletteColor(state, colorId)),
-        selected: useSelector(selectSelectedColorId) === colorId,
+        isSelected: useSelector(selectSelectedColorId) === colorId,
         setSelected: useCallback(() => dispatch(setSelectedColorId(colorId)), [dispatch, colorId]),
     };
 }

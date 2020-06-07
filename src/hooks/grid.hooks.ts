@@ -1,7 +1,7 @@
 import { selectSelectedGridRows, selectSelectedGridColumns, selectSelectedTileSize, selectSelectedTileScale, selectGridRows, selectGridColumns } from '../store/selections/selections.selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedGridRows, setSelectedGridColumns, setSelectedTileScale, setSelectedGridSize } from "../store/selections/selections.actions";
-import { setTiles } from '../store/tiles/tiles.actions';
+import { setAllTiles } from '../store/tiles/tiles.actions';
 import { DEFAULT_GRID_COLUMNS, DEFAULT_TILE_SCALE, DEFAULT_GRID_ROWS, DEFAULT_TILE_SIZE } from '../store/selections/selections.constants';
 import { getTilePositions } from '../utils/tiles.utils';
 import { useCallback } from 'react';
@@ -35,7 +35,7 @@ export const useGridConfigurations = () => {
         setColumns: useCallback((value: number) => dispatch(setSelectedGridColumns(value)), [dispatch]),
         scale: useSelector(selectSelectedTileScale),
         setScale: useCallback((value: number) => dispatch(setSelectedTileScale(value)), [dispatch]),
-        clear: useCallback(() => dispatch(setTiles({})), [dispatch]),
+        clear: useCallback(() => dispatch(setAllTiles({})), [dispatch]),
         reset: setDefaultGridSizeDesktop,
     };
 };

@@ -7,9 +7,9 @@ import { GridConfigurations } from "../../hooks/grid.hooks";
 import { Input } from "../Input";
 import { Plugins } from "../Plugins";
 import { Label } from "../Label";
-import DeleteIcon from '@material-ui/icons/Delete';
 import ReplayIcon from '@material-ui/icons/Replay';
 import { BrushList } from "../BrushList";
+import { GridClearButton } from "../GridClearButton";
 
 interface Props extends GridConfigurations {}
 
@@ -20,13 +20,11 @@ export const ToolBarUI: FC<Props> = ({
     setColumns,
     scale,
     setScale,
-    clear,
     reset,
 }) => (
     <ToolBarStyle>
         <ColorCountList />
-        <Label text="Clear" />
-        <DeleteIcon onClick={clear} />
+        <GridClearButton />
         <Label text="Reset" />
         <ReplayIcon onClick={reset} />
         <Input

@@ -1,7 +1,7 @@
 import { all, fork, put, takeLatest, select, delay } from 'redux-saga/effects'
 import { AppState } from '../../../store/reducer';
 import { selectTiles } from '../../../store/tiles/tiles.selectors';
-import { setTiles } from '../../../store/tiles/tiles.actions';
+import { setAllTiles } from '../../../store/tiles/tiles.actions';
 import { selectGridRows, selectGridColumns } from '../../../store/selections/selections.selectors';
 import { GameOfLifeActionTypes as ActionTypes, NextGenerationAction } from './gameOfLife.types';
 import * as actions from './gameOfLife.actions';
@@ -17,7 +17,7 @@ const generation = function* ({ value }: NextGenerationAction) {
     const rows = selectGridRows(state);
     const columns = selectGridColumns(state);
     const generationTiles = getGenerationTiles(columns, rows, tiles, String(colorId));
-    yield put(setTiles(generationTiles));
+    yield put(setAllTiles(generationTiles));
     yield delay(selectGenerationTime(state));
     if (selectIsRunning(yield select())) yield put(actions.nextGeneration(value + 1));
 }

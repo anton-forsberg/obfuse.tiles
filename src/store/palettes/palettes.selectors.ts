@@ -32,8 +32,8 @@ export const selectSelectedPaletteColorIds = (state: AppState) => {
     if (!paletteId) return [];
     return selectPaletteColorIds(state, paletteId);
 }
-export const selectSelectedPaletteColor = (state: AppState, colorId: string) => {
+export const selectSelectedPaletteColor = (state: AppState, colorId?: string) => {
     const paletteId = selectSelectedPaletteId(state);
-    if (!paletteId) return;
+    if (!paletteId || !colorId) return;
     return selectPaletteColor(state, paletteId, colorId);
 }

@@ -3,7 +3,7 @@ import { selectIsRunning, selectGenerationTime } from "./gameOfLife.selectors";
 import { toggleIsRunning, setGenerationTime } from './gameOfLife.actions';
 import { PRESETS } from "./gameOfLife.constants";
 import { TilesPreset } from "../../../store/tiles/tiles.types";
-import { setTiles } from "../../../store/tiles/tiles.actions";
+import { setAllTiles } from "../../../store/tiles/tiles.actions";
 import { useSetGridSize } from "../../../hooks/grid.hooks";
 import { useCallback } from "react";
 
@@ -16,7 +16,7 @@ export const useGameOfLife = () => {
 
         if (preset.columns && preset.rows) updateGridSize(preset.columns, preset.rows);
 
-        dispatch(setTiles(preset.tiles()));
+        dispatch(setAllTiles(preset.tiles()));
     }, [dispatch, updateGridSize]);
 
     return {

@@ -1,0 +1,1 @@
+export { EraserContainer as Eraser } from './eraser.container';

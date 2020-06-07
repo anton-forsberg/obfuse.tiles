@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BRUSH_TILE_SIZE, BRUSH_TILE_PADDING } from "../../brush.style";
-import { TOOLBAR_TEXT_COLOR } from "../../../../../../constants/styles.constants";
+import { TOOLBAR_TEXT_COLOR, HIGHLIGHT_COLOR } from "../../../../../../constants/styles.constants";
 
 interface Props {
     column: number;
@@ -18,5 +18,5 @@ export const BrushTileStyle = styled.div.attrs<Props>(props => ({
     position: absolute;
     width: ${BRUSH_TILE_SIZE}px;
     height: ${BRUSH_TILE_SIZE}px;
-    background: ${props => props.isSelected ? 'rgb(255, 124, 67)' : props.color ?? TOOLBAR_TEXT_COLOR};
+    background: ${props => props.isSelected ? HIGHLIGHT_COLOR : props.color ?? TOOLBAR_TEXT_COLOR};
 `;

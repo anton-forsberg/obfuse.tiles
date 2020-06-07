@@ -15,46 +15,36 @@ export interface TilePosition {
     row: number;
 }
 
+export enum SetTileOperation {
+    Fill,
+    Clear,
+    Custom,
+}
+
 export enum TileActionTypes {
-    FILL_TILE_INIT = 'FILL_TILE_INIT',
-    FILL_TILE_SUCCESS = 'FILL_TILE_SUCCESS',
-    FILL_TILES_SUCCESS = 'FILL_TILES_SUCCESS',
-    CLEAR_TILE = 'CLEAR_TILE',
-    SET_TILES = 'SET_TILES',
+    SET_TILES_INIT = 'SET_TILES_INIT',
+    SET_TILES_SUCCESS = 'SET_TILES_SUCCESS',
+    SET_ALL_TILES = 'SET_ALL_TILES',
 }
 
-export interface FillTileRequestAction {
-    type: TileActionTypes.FILL_TILE_INIT;
+export interface SetTilesInitAction {
+    type: TileActionTypes.SET_TILES_INIT;
     row: number;
     column: number;
+    operation: SetTileOperation;
 }
 
-export interface FillTileSuccessAction {
-    type: TileActionTypes.FILL_TILE_SUCCESS;
-    row: number;
-    column: number;
-    color?: string;
-}
-
-export interface FillTilesSuccessAction {
-    type: TileActionTypes.FILL_TILES_SUCCESS;
+export interface SetTilesSuccessAction {
+    type: TileActionTypes.SET_TILES_SUCCESS;
     tileIds: string[];
     color?: string;
 }
 
-export interface ClearTileAction {
-    type: TileActionTypes.CLEAR_TILE;
-    row: number;
-    column: number;
-}
-
-export interface SetTilesAction {
-    type: TileActionTypes.SET_TILES,
+export interface SetAllTilesAction {
+    type: TileActionTypes.SET_ALL_TILES,
     tiles: TileState,
 }
 
-export type TileAction = FillTileRequestAction
-    | FillTileSuccessAction
-    | FillTilesSuccessAction
-    | ClearTileAction
-    | SetTilesAction;
+export type TileAction = SetTilesInitAction
+    | SetTilesSuccessAction
+    | SetAllTilesAction;

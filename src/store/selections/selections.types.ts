@@ -23,7 +23,7 @@ export enum SelectionActionTypes {
 
 interface SetSelectedColorIdAction {
     type: SelectionActionTypes.SET_SELECTED_COLOR_ID;
-    value: string;
+    value?: string;
 }
 
 interface SetSelectedPaletteIdAction {
@@ -36,12 +36,12 @@ interface SetSelectedTileScaleAction {
     value: number;
 }
 
-interface SetSelectedTileRowsAction {
+interface SetSelectedGridRowsAction {
     type: SelectionActionTypes.SET_SELECTED_GRID_ROWS;
     value: number;
 }
 
-interface SetSelectedTileColumnsAction {
+interface SetSelectedGridColumnsAction {
     type: SelectionActionTypes.SET_SELECTED_GRID_COLUMNS;
     value: number;
 }
@@ -65,8 +65,8 @@ interface SetSelectedBrushAction {
 
 export type SelectionAction = SetSelectedColorIdAction
     | SetSelectedTileScaleAction
-    | SetSelectedTileRowsAction
-    | SetSelectedTileColumnsAction
+    | SetSelectedGridRowsAction
+    | SetSelectedGridColumnsAction
     | SetSelectedPaletteIdAction
     | SetSelectedPluginIdAction
     | SetSelectedGridSizeAction

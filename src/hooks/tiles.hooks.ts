@@ -1,9 +1,10 @@
 import { AppState } from '../store/reducer';
 import { selectSelectedTileSize } from '../store/selections/selections.selectors';
-import { clearTile, fillTileInit } from '../store/tiles/tiles.actions';
+import { setTilesInit } from '../store/tiles/tiles.actions';
 import { selectTileColorToDraw } from '../store/tiles/tiles.selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
+import { SetTileOperation } from '../store/tiles/tiles.types';
 
 export const useTile = (column: number, row: number) => {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export const useTile = (column: number, row: number) => {
     return {
         color: useSelector((state: AppState) => selectTileColorToDraw(state, column, row)),
         size: useSelector(selectSelectedTileSize),
-        fillTile: useCallback(() => dispatch(fillTileInit(column, row)), [dispatch, column, row]),
-        clearTile: useCallback(() => dispatch(clearTile(column, row)), [dispatch, column, row]),
+        fillTile: useCallback(() => dispatch(setTilesInit(column, row, SetTileOperation.Fill)), [dispatch, column, row]),
+        clearTile: useCallback(() => dispatch(setTilesInit(column, row, SetTileOperation.Clear)), [dispatch, column, row]),
     };
 }

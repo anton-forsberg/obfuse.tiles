@@ -9,12 +9,12 @@ interface Props {
 export const PaletteColorContainer: FC<Props> = ({
     colorId,
 }) => {
-    const { selected, setSelected, color } = useColor(colorId);
+    const { isSelected, setSelected, color } = useColor(colorId);
 
     return (
         <PaletteColorUI
             onClick={setSelected}
-            selected={selected}
+            isSelected={isSelected}
             color={color}
         />
     )

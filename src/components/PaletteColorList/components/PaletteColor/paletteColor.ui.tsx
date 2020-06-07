@@ -3,18 +3,18 @@ import { PaletteColorStyle } from "./paletteColor.styled";
 
 interface Props {
     onClick: MouseEventHandler;
-    selected: boolean;
+    isSelected: boolean;
     color?: string;
 }
 
 export const PaletteColorUI: FC<Props> = ({
     onClick,
     color,
-    selected,
+    isSelected,
 }) => (
     <PaletteColorStyle
         color={color}
-        selected={selected}
+        isSelected={isSelected}
         onClick={onClick}
     />
 )

@@ -5,6 +5,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Plugins } from "../Plugins";
 import { PaletteList } from "../PaletteList";
 import { PaletteColorList } from "../PaletteColorList";
+import { BrushList } from "../BrushList";
+import { GridClearButton } from "../GridClearButton";
+import { Eraser } from "../Eraser";
 
 interface Props {
     isOpen: boolean;
@@ -21,6 +24,11 @@ export const ToolBarMobileUI: FC<Props> = ({
         <ToolBarMobileOpenStyle
             isOpen={isOpen}>
             <Plugins />
+            <ToolBarMobileItemStyle>
+                <GridClearButton />
+                <Eraser />
+                <BrushList />
+            </ToolBarMobileItemStyle>
             <ToolBarMobileItemStyle>
                 <PaletteList />
                 <PaletteColorList />
