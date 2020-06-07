@@ -6,7 +6,7 @@ import { GlobalStyle } from '../../style';
 import { ServiceWorker } from './components/ServiceWorker';
 
 export const AppUI = () => (
-    <AppStyle>
+    <AppStyle onContextMenu={e => e.preventDefault()}>
         <GlobalStyle />
         <ToolBarSwitch />
         <Grid />

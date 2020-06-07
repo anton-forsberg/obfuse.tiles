@@ -18,7 +18,6 @@ export const GridUI: FC<Props> = ({
     tileSize,
 }) => (
     <GridStyle
-        onContextMenu={e => e.preventDefault()}
         tileSize={tileSize}
         rows={rows.length}
         columns={columns.length}>

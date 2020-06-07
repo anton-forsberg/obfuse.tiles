@@ -27,6 +27,7 @@ export const ToolBarMobileOpenStyle = styled.div<OpenProps>`
 `;
 
 export const ToolBarMobileExpanderStyle = styled.div<ExpanderProps>`
+    cursor: pointer;
     width: 50px;
     height: 50px;
     margin-top: 10px;
