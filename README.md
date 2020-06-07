@@ -10,7 +10,7 @@
 * More than 8 colors per palette
 * Filters
 
-## LEARNINGS:
+## Lessons learned:
 * When making components that list objects, it's better to have the individual items deepload (read from redux) their data than reading it from the list component. This is because otherwise every list item will re-render every time an individual items data changes.
 * It's good to read from the redux-state in redux actions (using saga/thunk) whenever possible. This is because otherwise you are creating dependencies between your components and the redux state unnecessarily, which may cause components to re-render when they don't need to.
 * When exposing functions in custom hooks, always use the `useCallback` hook. Otherwise the hook will cause the component to re-render unnecessarily.

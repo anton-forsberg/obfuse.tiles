@@ -6,7 +6,8 @@ type InputActions = Dictionary<() => void>;
 
 export const useInput = (actions: InputActions) => {
     const inputHandler = useCallback(mouseEvent(({ mouseButton }) => {
-        if (actions[mouseButton]) return actions[mouseButton]();
+        const action = actions[mouseButton];
+        if (action) return action();
     }), [])
 
     return { inputHandler };

@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { selectColorCount } from "../../../../../../store/tiles/tiles.selectors";
 import { AppState } from "../../../../../../store/reducer";
-import { TileCountUI } from "./tileCount.ui";
+import { ColorCountUI } from "./colorCount.ui";
 import { selectSelectedPaletteColor } from "../../../../../../store/palettes/palettes.selectors";
 
 interface Props {
     colorId: string;
 }
 
-export const TileCountContainer: FC<Props> = ({
+export const ColorCountContainer: FC<Props> = ({
     colorId
 }) => {
     const count = useSelector((state: AppState) => selectColorCount(state, colorId));
@@ -18,7 +18,7 @@ export const TileCountContainer: FC<Props> = ({
     if (!color) return null;
 
     return (
-        <TileCountUI
+        <ColorCountUI
             color={color}
             count={count}
         />

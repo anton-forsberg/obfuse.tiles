@@ -3,8 +3,8 @@ import { ToolBarMobileStyle, ToolBarMobileOpenStyle, ToolBarMobileExpanderStyle,
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import { Plugins } from "../Plugins";
-import { PaletteList } from "../ToolBar/components/PaletteList";
-import { ColorSwatch } from "../ToolBar/components/ColorSwatch";
+import { PaletteList } from "../PaletteList";
+import { PaletteColorList } from "../PaletteColorList";
 
 interface Props {
     isOpen: boolean;
@@ -23,7 +23,7 @@ export const ToolBarMobileUI: FC<Props> = ({
             <Plugins />
             <ToolBarMobileItemStyle>
                 <PaletteList />
-                <ColorSwatch />
+                <PaletteColorList />
             </ToolBarMobileItemStyle>
         </ToolBarMobileOpenStyle>
         <ToolBarMobileExpanderStyle

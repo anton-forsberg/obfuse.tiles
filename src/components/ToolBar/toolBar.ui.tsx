@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { ToolBarStyle } from "./toolBar.styled";
-import { TileCountList } from "./components/TileCountList";
-import { ColorSwatch } from "./components/ColorSwatch";
-import { PaletteList } from "./components/PaletteList";
+import { ColorCountList } from "./components/ColorCountList";
+import { PaletteColorList } from "../PaletteColorList";
+import { PaletteList } from "../PaletteList";
 import { GridConfigurations } from "../../hooks/grid.hooks";
 import { Input } from "../Input";
 import { Plugins } from "../Plugins";
@@ -23,7 +23,7 @@ export const ToolBarUI: FC<Props> = ({
     reset,
 }) => (
     <ToolBarStyle>
-        <TileCountList />
+        <ColorCountList />
         <Label text="Clear" />
         <DeleteIcon onClick={clear} />
         <Label text="Reset" />
@@ -49,6 +49,6 @@ export const ToolBarUI: FC<Props> = ({
         />
         <Plugins />
         <PaletteList />
-        <ColorSwatch />
+        <PaletteColorList />
     </ToolBarStyle>
 );

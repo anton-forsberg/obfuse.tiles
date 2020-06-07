@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { selectPaletteIds } from "../../../../store/palettes/palettes.selectors";
+import { selectPaletteIds } from "../../store/palettes/palettes.selectors";
 import { PaletteListUI } from "./paletteList.ui";
 
 export const PaletteListContainer: FC = () => {

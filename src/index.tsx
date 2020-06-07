@@ -5,8 +5,11 @@ import { configureStore, history } from './configureStore';
 import { Route, Switch, Redirect } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import { routes } from './utils/routes.utils';
+import { registerTouchListener } from './utils/input.utils';
 
 const store = configureStore();
+
+registerTouchListener();
 
 ReactDOM.render(
   <React.StrictMode>

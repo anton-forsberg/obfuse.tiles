@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { deviceQueries } from "../../../../../../utils/theme.utils";
+import { deviceQueries } from "../../../../utils/theme.utils";
 
 export const PALETTE_COLUMNS = 2;
 

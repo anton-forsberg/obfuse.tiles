@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 import { TileUI } from "../../../../../Tile";
-import { TileCountStyle } from "./tileCount.styled";
+import { ColorCountStyle } from "./colorCount.styled";
 
 interface Props {
     color: string;
     count: number;
 }
 
-export const TileCountUI: FC<Props> = ({
+export const ColorCountUI: FC<Props> = ({
     color,
     count
 }) => (
-    <TileCountStyle
+    <ColorCountStyle
         color={color}>
         <TileUI color={color} size={40}/>
         <span>{count}</span>
-    </TileCountStyle>
+    </ColorCountStyle>
 );

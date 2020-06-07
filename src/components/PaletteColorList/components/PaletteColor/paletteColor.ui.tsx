@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, FC } from "react";
-import { ColorSwatchColorStyle } from "./colorSwatchColor.styled";
+import { PaletteColorStyle } from "./paletteColor.styled";
 
 interface Props {
     onClick: MouseEventHandler;
@@ -7,12 +7,12 @@ interface Props {
     color?: string;
 }
 
-export const ColorSwatchColorUI: FC<Props> = ({
+export const PaletteColorUI: FC<Props> = ({
     onClick,
     color,
     selected,
 }) => (
-    <ColorSwatchColorStyle
+    <PaletteColorStyle
         color={color}
         selected={selected}
         onClick={onClick}

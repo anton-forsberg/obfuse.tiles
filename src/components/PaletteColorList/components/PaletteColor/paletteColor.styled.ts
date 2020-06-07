@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { getContrastColor } from "../../../../../../utils/color.utils";
-import { PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE_MOBILE } from "../../../../../../store/palettes/palettes.constants";
-import { deviceQueries } from "../../../../../../utils/theme.utils";
+import { getContrastColor } from "../../../../utils/color.utils";
+import { PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE_MOBILE } from "../../../../store/palettes/palettes.constants";
+import { deviceQueries } from "../../../../utils/theme.utils";
 
 interface Props {
     color?: string;
     selected: boolean;
 }
 
-export const ColorSwatchColorStyle = styled.div.attrs<Props>(props => ({
+export const PaletteColorStyle = styled.div.attrs<Props>(props => ({
     style: {
         backgroundColor: props.color,
         borderColor: props.selected ? getContrastColor(props.color) : 'transparent',

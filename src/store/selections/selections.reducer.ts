@@ -6,7 +6,8 @@ import { getDefaultPalettes } from '../palettes/palettes.constants';
 const getInitialState = (): SelectionState => {
     const palettes = getDefaultPalettes();
     const [ paletteId ] = Object.keys(palettes);
-    const [ colorId ] = Object.keys(palettes[paletteId]);
+    const palette = palettes[paletteId] ?? {};
+    const [ colorId ] = Object.keys(palette);
 
     return {
         paletteId,

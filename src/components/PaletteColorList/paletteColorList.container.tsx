@@ -1,14 +1,13 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { TileCountListUI } from "./tileCountList.ui";
-import { selectSelectedPaletteColorIds } from "../../../../store/palettes/palettes.selectors";
+import { PaletteColorListUI } from './paletteColorList.ui';
+import { selectSelectedPaletteColorIds } from "../../store/palettes/palettes.selectors";
 
-
-export const TileCountListContainer: FC = () => {
+export const PaletteColorListContainer: FC = () => {
     const colorIds = useSelector(selectSelectedPaletteColorIds, (left, right) => left.length === right.length);
 
     return (
-        <TileCountListUI
+        <PaletteColorListUI
             colorIds={colorIds}
         />
     );

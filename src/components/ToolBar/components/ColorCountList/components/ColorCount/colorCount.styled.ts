@@ -5,7 +5,7 @@ interface Props {
     color: string;
 }
 
-export const TileCountStyle = styled.div<Props>`
+export const ColorCountStyle = styled.div<Props>`
     color: ${props => getContrastColor(props.color)};
     position: relative;
 

@@ -10,7 +10,7 @@ export const logIterationCount = (type: string, extraInfo = '') => {
     if (!iterations[type]) iterations[type] = 0;
     if (timers[type]) clearTimeout(timers[type])
     timers[type] = setTimeout(() => iterations[type] = 0, ITERATION_RESET_TIME);
-    console.log(type, ++iterations[type], extraInfo);
+    console.log(type, ++iterations[type]!, extraInfo);
 }
 
 export const devOnly = <T>(callback: () => T): T | undefined => {

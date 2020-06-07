@@ -1,18 +1,18 @@
 import React, { FC } from "react";
-import { ColorSwatchColorUI } from "./colorSwatchColor.ui";
-import { useColor } from "../../../../../../hooks/color.hooks";
+import { PaletteColorUI } from "./paletteColor.ui";
+import { useColor } from "../../../../hooks/color.hooks";
 
 interface Props {
     colorId: string;
 };
 
-export const ColorSwatchColorContainer: FC<Props> = ({
+export const PaletteColorContainer: FC<Props> = ({
     colorId,
 }) => {
     const { selected, setSelected, color } = useColor(colorId);
 
     return (
-        <ColorSwatchColorUI
+        <PaletteColorUI
             onClick={setSelected}
             selected={selected}
             color={color}

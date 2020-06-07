@@ -38,11 +38,13 @@ const handleTouchEnter = (event: TouchEvent, element: Element) => {
     matchingEvent.callback(event);
 }
 
-document.addEventListener(EventTypes.TouchMove, event => {
-    const element = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
-    if (!element) return;
-    handleTouchEnter(event, element);
-});
+export const registerTouchListener = () => {
+    document.addEventListener(EventTypes.TouchMove, event => {
+        const element = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+        if (!element) return;
+        handleTouchEnter(event, element);
+    });
+}
 
 export const onTouchEnter = (element: Element | null, callback: () => void) => {
     if (!element) return;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE_MOBILE } from "../../../../store/palettes/palettes.constants";
-import { deviceQueries } from "../../../../utils/theme.utils";
+import { PALETTE_COLOR_SIZE, PALETTE_COLOR_SIZE_MOBILE } from "../../store/palettes/palettes.constants";
+import { deviceQueries } from "../../utils/theme.utils";
 
 interface Props {
     count: number;
 }
 
-export const ColorSwatchStyle = styled.div<Props>`
+export const PaletteColorListStyle = styled.div<Props>`
     display: flex;
     align-items: center;
     flex-flow: row wrap;

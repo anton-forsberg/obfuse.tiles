@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PALETTE_WIDTH, PALETTE_COLUMNS, PALETTE_WIDTH_MOBILE } from "../../palette.styled";
-import { deviceQueries } from "../../../../../../../../utils/theme.utils";
+import { deviceQueries } from "../../../../../../utils/theme.utils";
 
 const PALETTE_COLOR_SIZE = PALETTE_WIDTH / PALETTE_COLUMNS;
 const PALETTE_COLOR_SIZE_MOBILE = PALETTE_WIDTH_MOBILE / PALETTE_COLUMNS;

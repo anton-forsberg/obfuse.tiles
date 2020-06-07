@@ -1,4 +1,4 @@
-import { Dictionary } from "./types.utils";
+import { Dictionary, DictionaryKey } from "./types.utils";
 
 export const getArrayOfLength = (length: number) => [...Array(length)].map((e, i) => i);
 
@@ -17,6 +17,9 @@ export const replaceElement = <T>(array: T[], index: number, item: T) => {
 }
 
 export const toNumberArray = (array: string[]) => array.map(e => Number(e));
+
+export const getDictionaryValues = <T, K extends DictionaryKey>(dictionary: Dictionary<T, K>): T[] =>
+    Object.values(dictionary).filter(value => value !== undefined).map(value => value as T);
 
 type DictionaryKeyGetter<T> = (index: number, value: T) => string;
 export const toDictionary = <T>(values: T[], getKey: DictionaryKeyGetter<T>): Dictionary<T> => 

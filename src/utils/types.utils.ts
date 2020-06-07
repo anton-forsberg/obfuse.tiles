@@ -1,8 +1,14 @@
 import { FC } from "react";
 import { Effect } from "redux-saga/effects";
 
-export interface Dictionary<T> {
-    [key: string]: T;
+export type DictionaryKey = string | number | symbol;
+
+export type Dictionary<T, K extends DictionaryKey = string> = {
+    [key in K]?: T;
+}
+
+export type StrictDictionary<T, K extends DictionaryKey = string> = {
+    [key in K]: T;
 }
 
 export interface Plugin {
