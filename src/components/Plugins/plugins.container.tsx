@@ -7,12 +7,12 @@ const plugins: Plugin[] = [
     {
         name: "Game of Life",
         id: "game-of-life",
-        component: React.lazy(() => import('../../plugins/gameOfLife/components/Controls'))
+        component: React.lazy(() => import('../../plugins/gameOfLife/components/GameOfLifeControls'))
     },
     {
         name: "Sorting",
         id: "sorting",
-        component: React.lazy(() => import('../../plugins/sorting/components/Controls'))
+        component: React.lazy(() => import('../../plugins/sorting/components/SortingControls'))
     }
 ];
 
