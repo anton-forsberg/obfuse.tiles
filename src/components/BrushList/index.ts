@@ -1,1 +1,0 @@
-export { BrushListContainer as BrushList } from './brushList.container';

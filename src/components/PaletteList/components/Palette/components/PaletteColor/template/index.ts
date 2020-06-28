@@ -1,0 +1,1 @@
+export { PaletteColorTemplate as PaletteColor } from './paletteColor.template';

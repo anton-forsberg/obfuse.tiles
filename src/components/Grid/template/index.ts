@@ -1,0 +1,1 @@
+export { GridTemplate as Grid } from './grid.template';

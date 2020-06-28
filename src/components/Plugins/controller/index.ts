@@ -1,0 +1,1 @@
+export { PluginsController as Plugins } from './plugins.controller';

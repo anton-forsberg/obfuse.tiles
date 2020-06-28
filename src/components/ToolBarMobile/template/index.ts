@@ -1,0 +1,1 @@
+export { ToolBarMobileTemplate as ToolBarMobile } from './toolBarMobile.template';

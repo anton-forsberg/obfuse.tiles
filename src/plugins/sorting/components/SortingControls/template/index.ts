@@ -1,0 +1,1 @@
+export { SortingControlsTemplate as SortingControls } from './sortingControls.template';

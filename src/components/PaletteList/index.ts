@@ -1,1 +1,0 @@
-export { PaletteListContainer as PaletteList } from './paletteList.container'

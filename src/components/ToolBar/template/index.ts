@@ -1,0 +1,1 @@
+export { ToolBarTemplate as ToolBar } from './toolBar.template';

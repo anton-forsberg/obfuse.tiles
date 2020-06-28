@@ -1,1 +1,0 @@
-export { IconButtonUI as IconButton } from './iconButton.ui';

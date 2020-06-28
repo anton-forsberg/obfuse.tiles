@@ -1,1 +1,0 @@
-export { FormControlStyle as FormControl } from './formControl.styled';

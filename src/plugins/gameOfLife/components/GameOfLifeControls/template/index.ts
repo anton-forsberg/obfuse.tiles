@@ -1,0 +1,1 @@
+export { GameOfLifeControlsTemplate as GameOfLifeControls } from './gameOfLifeControls.template';

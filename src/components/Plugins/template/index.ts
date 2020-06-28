@@ -1,0 +1,1 @@
+export { PluginsTemplate as Plugins } from './plugins.template';

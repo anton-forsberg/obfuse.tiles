@@ -1,0 +1,1 @@
+export { InputController as Input } from './input.controller';

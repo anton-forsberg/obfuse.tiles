@@ -1,0 +1,1 @@
+export { SortingControlsController as SortingControls } from './sortingControls.controller';

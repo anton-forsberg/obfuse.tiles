@@ -1,0 +1,1 @@
+export { ToolBarMobileController as ToolBarMobile } from './toolBarMobile.controller';

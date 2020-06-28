@@ -1,4 +1,4 @@
-import { App } from "../components/App";
+import { App } from "../components/App/controller";
 
 const baseUrl = process.env.PUBLIC_URL;
 

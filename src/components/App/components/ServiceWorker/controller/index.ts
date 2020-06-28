@@ -1,0 +1,1 @@
+export { ServiceWorkerController as ServiceWorker } from './serviceWorker.controller';

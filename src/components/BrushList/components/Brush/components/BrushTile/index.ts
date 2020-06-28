@@ -1,1 +1,0 @@
-export { BrushTileStyle as BrushTile } from './brushTile.style';

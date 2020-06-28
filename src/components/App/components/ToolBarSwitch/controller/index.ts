@@ -1,0 +1,1 @@
+export { ToolBarSwitchController as ToolBarSwitch } from './toolBarSwitch.controller';

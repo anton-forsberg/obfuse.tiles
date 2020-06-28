@@ -1,0 +1,1 @@
+export { BrushListTemplate as BrushList } from './brushList.template';

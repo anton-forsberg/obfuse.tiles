@@ -1,0 +1,1 @@
+export { GridController as Grid } from './grid.controller';

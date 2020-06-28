@@ -1,0 +1,1 @@
+export { ToolBarController as ToolBar } from './toolBar.controller';

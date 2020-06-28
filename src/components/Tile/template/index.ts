@@ -1,0 +1,1 @@
+export { TileTemplate as Tile } from './tile.template';

@@ -1,0 +1,1 @@
+export { GameOfLifeControlsController as GameOfLifeControls } from './gameOfLifeControls.controller';

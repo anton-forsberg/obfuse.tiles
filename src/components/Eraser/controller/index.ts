@@ -1,0 +1,1 @@
+export { EraserController as Eraser } from './eraser.controller';

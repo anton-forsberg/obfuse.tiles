@@ -1,0 +1,1 @@
+export { PaletteColorController as PaletteColor } from './paletteColor.controller';

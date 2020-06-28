@@ -1,0 +1,1 @@
+export { TileController as Tile } from './tile.controller';

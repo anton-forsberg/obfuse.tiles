@@ -1,0 +1,1 @@
+export { AppTemplate as App } from './app.template';

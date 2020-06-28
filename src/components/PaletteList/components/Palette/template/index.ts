@@ -1,0 +1,1 @@
+export { PaletteTemplate as Palette } from './palette.template';

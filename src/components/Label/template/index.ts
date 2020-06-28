@@ -1,0 +1,1 @@
+export { LabelTemplate as Label } from './label.template';

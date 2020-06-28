@@ -1,1 +1,0 @@
-export { PaletteColorUI as PaletteColor } from './paletteColor.ui';

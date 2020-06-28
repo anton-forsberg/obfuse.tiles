@@ -1,0 +1,1 @@
+export { EraserTemplate as Eraser } from './eraser.template';

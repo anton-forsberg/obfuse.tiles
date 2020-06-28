@@ -1,0 +1,1 @@
+export { SelectTemplate as Select } from './select.template';

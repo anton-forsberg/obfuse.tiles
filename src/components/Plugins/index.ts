@@ -1,1 +1,0 @@
-export { PluginsContainer as Plugins } from './plugins.container';

@@ -1,0 +1,1 @@
+export { ServiceWorkerTemplate as ServiceWorker } from './serviceWorker.template';

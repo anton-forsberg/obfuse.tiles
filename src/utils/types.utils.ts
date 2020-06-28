@@ -18,3 +18,5 @@ export interface Plugin {
 }
 
 export type RecursiveGenerator<T> = Generator<Effect, T, any>;
+
+export type SelectValue = string | number | string[];

@@ -1,1 +1,0 @@
-export { MediaHandlerContainer as MediaHandler } from './mediaHandler.container';

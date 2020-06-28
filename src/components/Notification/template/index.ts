@@ -1,0 +1,1 @@
+export { NotificationTemplate as Notification } from './notification.template';

@@ -1,0 +1,1 @@
+export { IconButtonTemplate as IconButton } from './iconButton.template';

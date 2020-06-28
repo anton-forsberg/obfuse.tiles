@@ -1,1 +1,0 @@
-export { ColorCountContainer as ColorCount } from './colorCount.container';

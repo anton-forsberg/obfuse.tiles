@@ -1,1 +1,0 @@
-export { GridContainer as Grid } from './grid.container';

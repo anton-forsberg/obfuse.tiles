@@ -1,0 +1,1 @@
+export { BrushController as Brush } from './brush.controller';

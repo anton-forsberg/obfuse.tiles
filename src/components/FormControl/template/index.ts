@@ -1,0 +1,1 @@
+export { FormControlStyled as FormControl } from './formControl.styled';

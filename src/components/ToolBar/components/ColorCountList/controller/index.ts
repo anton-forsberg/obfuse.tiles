@@ -1,0 +1,1 @@
+export { ColorCountListController as ColorCountList } from './colorCountList.controller';
