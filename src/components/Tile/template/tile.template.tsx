@@ -8,7 +8,6 @@ interface Props {
     row?: number;
     column?: number;
     size: number;
-    className?: string;
     forwardRef?: RefObject<TileElement>;
     inputHandler?: MouseEventHandler;
 };
@@ -18,13 +17,11 @@ export const TileTemplate: FC<Props> = ({
     row,
     column,
     size,
-    className = "",
     forwardRef,
     inputHandler,
 }) => (
     <TileStyled
         ref={forwardRef}
-        className={className}
         onMouseEnter={inputHandler}
         onMouseDown={inputHandler}
         color={color}
